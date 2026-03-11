@@ -1,4 +1,3 @@
-// src/components/sections/OffersShowcase.jsx
 import React, { useEffect } from "react";
 import {
   Box,
@@ -12,11 +11,9 @@ import { styled, alpha, useTheme } from "@mui/material/styles";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 
-/* ---- Brand ---- */
 const ACCENT = "#f2c230";
 const ACCENT_HOVER = "#ffd95a";
 
-/* ---- Styled ---- */
 const Section = styled(Box)(({ theme }) => ({
   paddingBlock: theme.spacing(8, 12),
   [theme.breakpoints.down('sm')]: {
@@ -47,7 +44,6 @@ const Media = styled(Box)(({ theme }) => ({
 }));
 
 const LearnBtn = styled(Button)(({ theme }) => ({
-  /* Mobile (xs) — full-width, transparent, blurred, yellow text */
   width: "100%",
   borderRadius: 12,
   textTransform: "none",
@@ -69,7 +65,6 @@ const LearnBtn = styled(Button)(({ theme }) => ({
     transform: "translateY(-1px)",
   },
 
-  /* Tablet/Desktop (sm and up) — revert to original style */
   [theme.breakpoints.up("sm")]: {
     width: "auto",
     borderRadius: 999,
@@ -90,10 +85,6 @@ const LearnBtn = styled(Button)(({ theme }) => ({
 }));
 
 
-
-
-
-/* ---- Mobile overlayed text panel on card ---- */
 const GradientWash = styled(Box)(({ theme }) => ({
   position: "absolute",
   inset: 0,
@@ -172,7 +163,6 @@ function OfferCard({ it, overlayContent = false }) {
         ) : null}
       </Media>
 
-      {/* Desktop/tablet: details below the card as before */}
       {!overlayContent && (
         <Box sx={{ maxWidth: 380 }}>
           <Typography variant="h5" sx={{ fontWeight: 900, mb: 1 }}>
@@ -186,7 +176,6 @@ function OfferCard({ it, overlayContent = false }) {
   );
 }
 
-/* ---- Component ---- */
 export default function OffersShowcase({
   title = "What We Offer",
   items,
@@ -195,7 +184,6 @@ export default function OffersShowcase({
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // Default items with navigation logic
   const defaultItems = [
     {
       img: "/landing/experience.jpg",

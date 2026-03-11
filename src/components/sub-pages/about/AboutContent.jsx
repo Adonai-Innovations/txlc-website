@@ -1,16 +1,11 @@
-// src/components/sub-pages/about/AboutContent.jsx
 import React from "react";
 import { Box, Typography, Container } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
-
-// Images
 import arenaRight from "/about/about.jpg"; // first section (right)
 import arenaLeft from "/about/amenities.jpg";  // second section (left)
 
-/* ------------------------------- Tokens -------------------------------- */
 const ACCENT = "#f2c230";
 
-/* ------------------------------- Styled -------------------------------- */
 const Section = styled(Box)(({ theme }) => ({
   position: "relative",
   width: "100%",
@@ -49,7 +44,6 @@ const YellowGradientBlob = styled(Box)(({ theme }) => ({
   pointerEvents: "none",
 }));
 
-/* --- Layout --- */
 const TwoColumn = styled(Box)(({ theme, reverse }) => ({
   position: "relative",
   display: "grid",
@@ -81,7 +75,6 @@ const Media = styled(Box)({
   justifyContent: 'center',
 });
 
-/* --- Typo --- */
 const Eyebrow = styled(Typography)(({ theme }) => ({
   fontSize: 15,
   letterSpacing: 2.2,
@@ -109,12 +102,11 @@ const Strong = styled("span")({
   fontWeight: 800,
 });
 
-/* --- Rotated Card --- */
 const RotatedCard = styled(Box)(({ theme, rotate = 0 }) => ({
   position: "relative",
   width: "100%",
-  maxWidth: 480, // Slightly larger than Intro to fit the content style
-  aspectRatio: "16/10", // Matching previous aspect ratio
+  maxWidth: 480,
+  aspectRatio: "16/10",
   background: "#888",
   transform: `rotate(${rotate}deg)`,
   boxShadow: `0 20px 40px ${alpha("#000", 0.6)}`,
@@ -126,7 +118,6 @@ const RotatedCard = styled(Box)(({ theme, rotate = 0 }) => ({
   },
 }));
 
-/* -------------------------------- View -------------------------------- */
 export default function AboutContent() {
   return (
     <Section>

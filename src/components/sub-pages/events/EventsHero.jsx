@@ -1,4 +1,3 @@
-// src/components/events/EventsHero.jsx
 import React from "react";
 import { Box, Container, Button, Stack, useTheme, useMediaQuery } from "@mui/material";
 import { styled } from "@mui/material/styles";

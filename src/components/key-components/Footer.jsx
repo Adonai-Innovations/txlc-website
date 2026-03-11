@@ -1,4 +1,3 @@
-// src/components/Footer.jsx
 import React from "react";
 import {
   Box,
@@ -32,14 +31,13 @@ const Section = styled(Box)(({ theme }) => ({
   paddingBlock: theme.spacing(8),
 }));
 
-/* Mobile: 2 columns (50/50) centered; sm+ uses original 4-col layout left-aligned */
 const GridWrap = styled("div")(({ theme }) => ({
   display: "grid",
   gap: theme.spacing(6),
   alignItems: "start",
-  gridTemplateColumns: "repeat(2, 1fr)", // 50/50 on mobile
-  justifyItems: "center", // center columns on mobile
-  textAlign: "center", // center text on mobile
+  gridTemplateColumns: "repeat(2, 1fr)",
+  justifyItems: "center",
+  textAlign: "center",
   [theme.breakpoints.up("sm")]: {
     gridTemplateColumns: "1.4fr 1fr 1fr 1.2fr",
     justifyItems: "stretch",
@@ -50,7 +48,6 @@ const GridWrap = styled("div")(({ theme }) => ({
   },
 }));
 
-/* Span full width only on mobile; revert to auto on sm+ */
 const FullSpanOnMobile = styled(Box)(({ theme }) => ({
   gridColumn: "1 / -1",
   [theme.breakpoints.up("sm")]: { gridColumn: "auto" },
@@ -60,7 +57,7 @@ const ColTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 800,
   fontSize: 18,
   marginBottom: theme.spacing(2.5),
-  textAlign: "inherit", // inherits center on mobile, left on sm+
+  textAlign: "inherit",
 }));
 
 const FooterLink = styled(MuiLink)(({ theme }) => ({
@@ -110,7 +107,6 @@ export default function Footer({ logoSrc = "/alt-logo.png" }) {
     <Section component="footer">
       <Container maxWidth="xl">
         <GridWrap>
-          {/* Logo — full width & centered on mobile */}
           <FullSpanOnMobile>
             <Box
               component="img"
@@ -121,12 +117,11 @@ export default function Footer({ logoSrc = "/alt-logo.png" }) {
                 height: "auto",
                 display: "block",
                 mb: 2,
-                mx: { xs: "auto", sm: 0 }, // center on mobile
+                mx: { xs: "auto", sm: 0 },
               }}
             />
           </FullSpanOnMobile>
 
-          {/* Sitemap — left cell (centered on mobile) */}
           <Box>
             <ColTitle>Sitemap</ColTitle>
             <Stack spacing={0} alignItems={{ xs: "center", sm: "flex-start" }}>
@@ -145,7 +140,6 @@ export default function Footer({ logoSrc = "/alt-logo.png" }) {
             </Stack>
           </Box>
 
-          {/* Socials — right cell (centered on mobile) */}
           <Box>
             <ColTitle>Socials</ColTitle>
             <Stack spacing={0} alignItems={{ xs: "center", sm: "flex-start" }}>
@@ -157,7 +151,6 @@ export default function Footer({ logoSrc = "/alt-logo.png" }) {
             </Stack>
           </Box>
 
-          {/* Address + Signup — full width & centered text on mobile */}
           <FullSpanOnMobile>
             <ColTitle>Address</ColTitle>
             <Typography sx={{ color: MUTED, mb: 3 }}>
@@ -186,12 +179,12 @@ export default function Footer({ logoSrc = "/alt-logo.png" }) {
                 }}
                 fullWidth
                 sx={{
-                  maxWidth: { xs: "none", sm: 520 }, // full width on mobile, cap on desktop if you like
+                  maxWidth: { xs: "none", sm: 520 },
                 }}
               />
               <SubmitBtn
                 onClick={() => setEmail("")}
-                sx={{ width: { xs: "100%", sm: "auto" } }} // full-width button on mobile
+                sx={{ width: { xs: "100%", sm: "auto" } }}
               >
                 Submit
               </SubmitBtn>
@@ -201,7 +194,6 @@ export default function Footer({ logoSrc = "/alt-logo.png" }) {
           </FullSpanOnMobile>
         </GridWrap>
 
-        {/* Bottom bar */}
         <Box
           sx={{
             mt: 6,
@@ -209,7 +201,7 @@ export default function Footer({ logoSrc = "/alt-logo.png" }) {
             borderTop: `1px solid ${LINE}`,
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
-            justifyContent: { xs: "space-between", md: "flex-start" }, // ⬅️ start on desktop
+            justifyContent: { xs: "space-between", md: "flex-start" },
             alignItems: { xs: "center", md: "center" },
             rowGap: 2,
             fontSize: 15,

@@ -1,4 +1,3 @@
-// src/components/TopbarResponsiveNav.jsx
 import React from "react";
 import {
   AppBar,
@@ -20,7 +19,6 @@ import { Link as RouterLink, useLocation } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 
-/* ----------------------------- Styled ----------------------------- */
 const GlassBar = styled(AppBar)(({ theme }) => ({
   position: "fixed",
   background: "transparent",
@@ -45,7 +43,6 @@ const Wrap = styled(Toolbar)(({ theme }) => ({
   position: "relative",
 }));
 
-/* Equal edge padding (slightly increased) for logo and right-side area */
 const EdgeSlot = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -54,7 +51,6 @@ const EdgeSlot = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up("md")]: { paddingInline: theme.spacing(1.75) },
 }));
 
-/* Right-aligned desktop nav (now a normal flex row) */
 const CenterRail = styled(Box)(({ theme }) => ({
   display: "none",
   alignItems: "center",
@@ -214,7 +210,6 @@ const WaiverBtn = styled(Button)(({ theme }) => ({
   transition: "all .2s ease",
 }));
 
-/* ------------------------------ Component ------------------------------ */
 export default function TopbarResponsiveNav({
   logoSrc = "/alt-logo.png",
   logoAlt = "TX Laser Tag",
@@ -254,7 +249,6 @@ export default function TopbarResponsiveNav({
     setEventsAnchor(null);
   };
 
-  // Internal waitlist state (used if onJoinWaitlist isn't passed)
   // Roller Checkout Handler
   const handleJoinClick = () => {
     if (onJoinWaitlist) {
@@ -287,7 +281,6 @@ export default function TopbarResponsiveNav({
     <>
       <GlassBar position="fixed" className={scrolled ? "elevated" : ""} {...appBarProps}>
         <Wrap disableGutters>
-          {/* Left: Logo */}
           <EdgeSlot>
             <LogoLink component={RouterLink} to="/" aria-label="Go to homepage">
               <Box
@@ -305,10 +298,8 @@ export default function TopbarResponsiveNav({
             </LogoLink>
           </EdgeSlot>
 
-          {/* Spacer pushes everything after this to the right */}
           <Box sx={{ flexGrow: 1 }} />
 
-          {/* Desktop nav now right-aligned, sitting next to the CTA */}
           <CenterRail aria-label="Primary navigation (desktop)" role="navigation">
             {links.map((link) => {
               const active = activeCheck(link.to);
@@ -609,8 +600,6 @@ export default function TopbarResponsiveNav({
           </Box>
         </DrawerShell>
       </Drawer>
-
-      {/* Embedded Waitlist form (used if no onJoinWaitlist prop is provided) */}
 
     </>
   );

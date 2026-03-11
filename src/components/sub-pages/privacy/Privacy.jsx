@@ -1,4 +1,3 @@
-// src/components/sub-pages/privacy/Privacy.jsx
 import React from 'react';
 import PrivacyHero from './PrivacyHero';
 import PrivacyContent from './PrivacyContent';

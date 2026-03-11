@@ -1,4 +1,3 @@
-// src/components/PartyRoomPackages.jsx
 import React from "react";
 import { Box, Container, Typography, Button, Paper } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";

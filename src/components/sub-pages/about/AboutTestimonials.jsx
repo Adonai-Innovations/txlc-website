@@ -1,4 +1,3 @@
-// src/components/testimonials/TestimonialsGlass.jsx
 import React from "react";
 import {
   Box,
@@ -14,7 +13,6 @@ import {
 import { styled, alpha } from "@mui/material/styles";
 import { motion } from "framer-motion";
 
-/* --------------------------- Styled Components --------------------------- */
 const Section = styled(Box)(({ theme }) => ({
   position: "relative",
   width: "100%",
@@ -63,7 +61,6 @@ const RingGlow = styled("span")(({ theme }) => ({
   zIndex: 0,
 }));
 
-/* ------------------------------ Component ------------------------------- */
 export default function AboutTestimonials({
   title = "What our customers say",
   subtitle = "Real stories from people who trust us.",

@@ -1,4 +1,3 @@
-// src/components/hero/HeroIntroSplit.jsx
 import React from "react";
 import {
   Box,
@@ -16,7 +15,6 @@ import Waitlist from "../forms/Waitlist";
 const CTA = "#f2c230";
 const CTA_HOVER = "#ffd24a";
 
-/* ----------------------------- Layout Shell ----------------------------- */
 const Section = styled(Box)(({ theme }) => ({
   position: "relative",
   color: alpha("#fff", 0.92),
@@ -26,7 +24,6 @@ const Section = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up("md")]: { paddingBlock: theme.spacing(12) },
 }));
 
-/* ------------------------------ Grid Layout ----------------------------- */
 const GridWrap = styled("div")(({ theme }) => ({
   display: "grid",
   gridTemplateColumns: "minmax(0, 1fr)",
@@ -45,7 +42,6 @@ const GridWrap = styled("div")(({ theme }) => ({
 const MediaArea = styled("div")({ gridArea: "media", minWidth: 0 });
 const ContentArea = styled("div")({ gridArea: "content", minWidth: 0 });
 
-/* ------------------------------ Media Card ------------------------------ */
 const MediaWrap = styled(Box)(({ theme }) => ({
   position: "relative",
   width: "100%",
@@ -59,7 +55,6 @@ const MediaWrap = styled(Box)(({ theme }) => ({
   boxShadow: `0 18px 60px ${alpha("#000", 0.5)}, inset 0 1px 0 ${alpha("#fff", 0.06)}`,
 }));
 
-/* --------------------------------- CTA --------------------------------- */
 const CtaButton = styled(Button)(({ theme }) => ({
   alignSelf: "flex-start",
   paddingInline: theme.spacing(3.25),
@@ -77,7 +72,6 @@ const CtaButton = styled(Button)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: { paddingBlock: theme.spacing(1.6) },
 }));
 
-/* ------------------------------- Component ------------------------------ */
 export default function HeroIntroSplit({
   title = "A premier immersive experience",
   paragraphs = [
@@ -86,14 +80,10 @@ export default function HeroIntroSplit({
   ],
   ctaText = "Join our VIPs waitlist",
 
-  /** Optional: if you need to hook into submit */
-  onWaitlistSubmit, // (data) => Promise|void
+  onWaitlistSubmit,
 
-  /** Fallback click (used only if waitlistDisabled=true) */
   onCtaClick = () =>
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }),
-
-  /** Set true to disable the modal and use onCtaClick instead */
   waitlistDisabled = false,
 
   imageSrc = "/landing/intro.jpg",
@@ -102,7 +92,6 @@ export default function HeroIntroSplit({
   const theme = useTheme();
   const downMd = useMediaQuery(theme.breakpoints.down("md"));
 
-  // --- Waitlist modal state (same pattern as HeroCountdown) ---
   const [openDialog, setOpenDialog] = React.useState(false);
   const handleJoin = () => {
     if (waitlistDisabled) return onCtaClick?.();
@@ -191,7 +180,6 @@ export default function HeroIntroSplit({
         </GridWrap>
       </Container>
 
-      {/* Reuse the same Waitlist modal UX from HeroCountdown */}
       {!waitlistDisabled && (
         <Waitlist open={openDialog} onClose={handleClose} onSubmit={handleSubmit} />
       )}

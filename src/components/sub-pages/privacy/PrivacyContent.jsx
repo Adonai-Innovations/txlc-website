@@ -1,4 +1,3 @@
-// src/components/sub-pages/privacy/PrivacyContent.jsx
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
@@ -18,7 +17,7 @@ const Heading = styled(Typography)(({ theme }) => ({
     fontWeight: 700,
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(2),
-    color: "#f2c230", // ACCENT
+    color: "#f2c230",
 }));
 
 const Paragraph = styled(Typography)(({ theme }) => ({

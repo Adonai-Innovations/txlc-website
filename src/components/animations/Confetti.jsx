@@ -25,7 +25,6 @@ function Confetti({ show }) {
           width: "100vw",
           height: "100vh",
           pointerEvents: "none",
-          // put it ABOVE the dialog paper (modal is 1300 by default)
           zIndex: (theme.zIndex?.snackbar || 1400) + 10,
           overflow: "hidden",
         })}

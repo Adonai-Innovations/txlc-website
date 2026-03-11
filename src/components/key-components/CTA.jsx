@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import { motion } from "framer-motion";
-import Waitlist from "../forms/Waitlist"; // ⬅️ import the form
+import Waitlist from "../forms/Waitlist";
 
 /* ----------------------------- Styled ----------------------------- */
 const Section = styled(Box)(({ theme, bgimg }) => ({
@@ -35,10 +35,9 @@ const Section = styled(Box)(({ theme, bgimg }) => ({
     zIndex: 0,
   },
 
-  // ⬇️ Taller on mobile
   [theme.breakpoints.down("sm")]: {
-    minHeight: "85svh",                // try 80–90svh to taste
-    paddingBlock: theme.spacing(6),    // optional: add more vertical breathing room
+    minHeight: "85svh",
+    paddingBlock: theme.spacing(6),
   },
 }));
 
@@ -63,22 +62,20 @@ export default function CTA({
   ],
   address = "2300 Coit Road (off Irvine Drive) #400, Plano, TX 75075",
   backgroundImage = "/cta.jpg",
-  primaryCta = { label: "Join VIP Access List" }, // href kept for compatibility (not used by default)
+  primaryCta = { label: "Join VIP Access List" },
   secondaryCta = {
     label: "Get Directions",
     href: "https://maps.google.com/?q=2300+Coit+Road+%23400,+Plano,+TX+75075",
   },
   dense = false,
-  onBookNowClick, // ⬅️ optional external handler (shared modal)
+  onBookNowClick,
 }) {
   const theme = useTheme();
 
-  // Local waitlist dialog if no external handler is provided
   const [waitlistOpen, setWaitlistOpen] = React.useState(false);
   const openWaitlist = () => setWaitlistOpen(true);
   const closeWaitlist = () => setWaitlistOpen(false);
   const submitWaitlist = async (data) => {
-    // TODO: hook up your API here if desired
     console.log("CTA waitlist submission:", data);
     setWaitlistOpen(false);
   };
@@ -155,7 +152,6 @@ export default function CTA({
             >
               {primaryCta && (
                 <Button
-                  // NOTE: use onClick so it opens the Waitlist by default
                   onClick={handleBookNow}
                   variant="contained"
                   size="large"

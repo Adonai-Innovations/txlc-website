@@ -10,11 +10,8 @@ import {
 import { styled, alpha } from "@mui/material/styles";
 
 
-
-/* ----------------------- Centered panel container -------------------- */
-/* ----------------------- Centered panel container -------------------- */
 const Panel = styled(Box)(({ theme }) => ({
-  "--gutter": "min(8vw, 64px)", // single source of truth for side padding
+  "--gutter": "min(8vw, 64px)",
   width: "100%",
   borderRadius: 30,
   overflow: "hidden",
@@ -23,10 +20,9 @@ const Panel = styled(Box)(({ theme }) => ({
   border: `1px solid ${alpha("#fff", 0.08)}`,
   boxShadow: `0 24px 80px ${alpha("#000", 0.45)}`,
 
-  paddingInline: "var(--gutter)", // panel’s inner side padding
+  paddingInline: "var(--gutter)",
 }));
 
-/* ------------------------------ Inner content ---------------------------- */
 const Track = styled(Box)(({ theme }) => ({
   width: "100%",
   marginInline: "auto",
@@ -34,7 +30,6 @@ const Track = styled(Box)(({ theme }) => ({
   paddingBottom: 0,
 }));
 
-/* ----------------------------- Grid & visuals ---------------------------- */
 const GridWrap = styled("div")(({ theme }) => ({
   display: "grid",
   gap: theme.spacing(6),
@@ -76,15 +71,13 @@ const Copy = styled(Typography)(({ theme }) => ({
   color: alpha("#fff", 0.88),
   textAlign: "center", // ⬅️ center on mobile
   [theme.breakpoints.up("md")]: {
-    textAlign: "left", // ⬅️ left on desktop/tablet
+    textAlign: "left",
   },
 }));
 
-/* --------- Pledge bar that visually spans full panel width (edge-to-edge) -------- */
 const PledgeBar = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(6),
 
-  // Break out of Panel’s side padding to reach its edges
   marginInline: "calc(-1 * var(--gutter))",
   width: "calc(100% + (2 * var(--gutter)))",
 
@@ -92,7 +85,6 @@ const PledgeBar = styled(Box)(({ theme }) => ({
   color: "#151515",
   borderTop: `1px solid ${alpha("#000", 0.2)}`,
 
-  // Keep inner text aligned with content above
   paddingInline: "var(--gutter)",
   paddingTop: theme.spacing(2.25),
   paddingBottom: theme.spacing(2.25),
@@ -100,7 +92,6 @@ const PledgeBar = styled(Box)(({ theme }) => ({
   textAlign: "center",
 }));
 
-/* --------------------------------- Component ----------------------------- */
 export default function CommunityCommitment({
   title = "Our Community Commitment",
   woundedWarriorLogo = "/community/wounded-warrior.png",

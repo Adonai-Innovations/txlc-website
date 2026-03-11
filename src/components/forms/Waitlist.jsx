@@ -77,7 +77,8 @@ export default function Waitlist({
     setStatus("submitting");
 
     try {
-      const response = await fetch("https://tx-laser-tag-server.onrender.com/api/vip", {
+      const response = await fetch("https://txlc-server.onrender.com/api/vip", { // new server
+        // const response = await fetch("https://tx-laser-tag-server.onrender.com/api/vip", {
         // const response = await fetch("http://localhost:3000/api/vip", {
         method: "POST",
         headers: {

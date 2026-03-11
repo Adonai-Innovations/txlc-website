@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Section = styled(Box)(({ theme }) => ({
   position: "relative",
   width: "100%",
-  background: "transparent", // fixed typo
+  background: "transparent",
   color: alpha("#fff", 0.9),
   paddingTop: theme.spacing(8),
   paddingBottom: theme.spacing(10),

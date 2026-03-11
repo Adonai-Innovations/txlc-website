@@ -100,8 +100,9 @@ export default function Contact() {
     setStatus("submitting");
 
     try {
-      // const response = await fetch("http://localhost:3000/api/contact", {
-      const response = await fetch("https://tx-laser-tag-server.onrender.com/api/contact", {
+      const response = await fetch("https://txlc-server.onrender.com/api/contact", { // new server
+        // const response = await fetch("http://localhost:3000/api/contact", { // local
+        // const response = await fetch("https://tx-laser-tag-server.onrender.com/api/contact", { // old server
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,4 +1,3 @@
-// src/components/sub-pages/privacy/PrivacyHero.jsx
 import React from "react";
 import {
     Box,
@@ -13,13 +12,13 @@ import { motion } from "framer-motion";
 const Wrap = styled(Box)(({ theme }) => ({
     position: "relative",
     width: "100%",
-    minHeight: "50vh", // Shorter than main hero
+    minHeight: "50vh",
     display: "grid",
     placeItems: "center",
     background: "transparent",
     color: "#eee",
     overflow: "hidden",
-    paddingTop: theme.spacing(12), // Clearance for navbar
+    paddingTop: theme.spacing(12),
 }));
 
 const Headline = styled(motion.h1)(({ theme }) => ({

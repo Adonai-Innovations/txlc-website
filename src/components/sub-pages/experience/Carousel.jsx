@@ -65,7 +65,6 @@ export const CAROUSEL_CONFIG = {
   autoplay: { enabled: false, intervalMs: 5000, pauseOnHover: true },
   initialIndex: 0,
 };
-/* ------------------------------------------------------------------------ */
 
 const SHADOW = (a) => `0 24px 80px rgba(0,0,0,${a})`;
 const SPRING = { type: "spring", stiffness: 160, damping: 26, mass: 0.9 };

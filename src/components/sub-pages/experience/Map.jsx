@@ -1,4 +1,3 @@
-// src/components/FeatureBanner.jsx
 import React, { useEffect, useRef } from "react";
 import { Box, Container } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
@@ -28,7 +27,6 @@ const Overlay = styled(Box)(() => ({
 }));
 
 export default function FeatureBanner({
-  // image props kept for backwards-compat but no longer used when iframe is present
   src = DEFAULT_SRC,
   alt = "",
   height = "clamp(420px, 48vw, 720px)",
@@ -42,7 +40,6 @@ export default function FeatureBanner({
   const iframeRef = useRef(null);
   const pano_iframe_name = "tour-embeded";
 
-  // React version of your <script> that forwards DeviceMotion to the iframe
   useEffect(() => {
     const handler = (e) => {
       const iframe =
@@ -85,7 +82,6 @@ export default function FeatureBanner({
       {...containerProps}
     >
       <Wrap sx={{ height, borderRadius: radius, ...sx }}>
-        {/* Your iframe in place of the image */}
         <Iframe
           id="tour-embeded"
           ref={iframeRef}
@@ -93,7 +89,7 @@ export default function FeatureBanner({
           src="https://tour.panoee.net/iframe/68c393b865c1d7461aa7a8ed"
           frameBorder="0"
           width="100%"
-          height="400px"        // ignored by CSS since we set height: 100% above
+          height="400px"
           scrolling="no"
           allowvr="yes"
           allow="vr; xr; accelerometer; gyroscope; autoplay;"
@@ -113,7 +109,7 @@ export default function FeatureBanner({
               display: "grid",
               placeItems: "center",
               p: 2,
-              pointerEvents: "none", // keep the tour interactive
+              pointerEvents: "none",
             }}
           >
             {children}

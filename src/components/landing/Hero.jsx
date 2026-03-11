@@ -156,19 +156,10 @@ export default function HeroCountdown({
       setIsMuted(!isMuted);
     }
   };
-
-  /* 
-     Robust video playback logic:
-     1. Use ref to control playback
-     2. Handle 'canplay' event
-     3. Ensure muted is set
-     4. Handle promise rejection gracefully
-  */
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Browser policy requires mute for autoplay
     video.muted = true;
 
     const playVideo = () => {
@@ -177,12 +168,9 @@ export default function HeroCountdown({
       }
     };
 
-    // If already ready, play immediately
     if (video.readyState >= 3) {
       playVideo();
     }
-
-    // Otherwise wait for event
     video.addEventListener("canplay", playVideo);
 
     // Cleanup
@@ -202,7 +190,6 @@ export default function HeroCountdown({
 
   const handleClose = () => setOpenDialog(false);
   const handleSubmit = async (data) => {
-    // TODO: replace with your API call
     console.log("Waitlist submission:", data);
     setOpenDialog(false);
   };
@@ -222,18 +209,16 @@ export default function HeroCountdown({
           type="video/mp4"
         />
 
-        {/* Overlay to darken video for better text contrast */}
         <Box
           sx={{
             position: "absolute",
             inset: 0,
             background: "rgba(0,0,0,0.5)",
             zIndex: 1,
-            pointerEvents: "none", // Allow clicks to pass through to button if needed, assuming button is on top via z-index
+            pointerEvents: "none",
           }}
         />
 
-        {/* Audio Control */}
         <Box
           sx={{
             position: "absolute",

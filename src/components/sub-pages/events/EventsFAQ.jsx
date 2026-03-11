@@ -1,4 +1,3 @@
-// src/components/faq/ModernFAQ.jsx
 import React, { useState } from "react";
 import {
   Box,
