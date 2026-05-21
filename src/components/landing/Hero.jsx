@@ -193,6 +193,9 @@ export default function HeroCountdown({
     console.log("Waitlist submission:", data);
     setOpenDialog(false);
   };
+  const handleLearnMore = () => {
+    window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+  };
 
   return (
     <Section>
@@ -219,12 +222,14 @@ export default function HeroCountdown({
           }}
         />
 
+        {/* Desktop-only mute button */}
         <Box
           sx={{
             position: "absolute",
-            bottom: { xs: 20, md: 40 },
-            right: { xs: 20, md: 40 },
+            bottom: 40,
+            right: 40,
             zIndex: 2,
+            display: { xs: "none", md: "block" },
           }}
         >
           <IconButton
@@ -234,96 +239,93 @@ export default function HeroCountdown({
               background: "rgba(255,255,255,0.1)",
               backdropFilter: "blur(10px)",
               border: "1px solid rgba(255,255,255,0.2)",
-              "&:hover": {
-                background: "rgba(255,255,255,0.2)",
-              },
+              "&:hover": { background: "rgba(255,255,255,0.2)" },
             }}
           >
             {isMuted ? <VolumeOff /> : <VolumeUp />}
           </IconButton>
         </Box>
       </VideoContainer>
-      {/* <GridOverlay /> */}
-      <Container
-        maxWidth="lg"
-        sx={{ position: "relative", zIndex: 1, px: { xs: 2.25, sm: 3, md: 4 } }}
+
+      <Box
+        component={motion.div}
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+        sx={{
+          position: "absolute",
+          bottom: { xs: 32, md: 48 },
+          left: { xs: 0, md: 64 },
+          right: { xs: 0, md: "auto" },
+          px: { xs: 2.25, md: 0 },
+          zIndex: 2,
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          gap: 2,
+          alignItems: "stretch",
+        }}
       >
-        <Stack spacing={{ xs: 3.5, md: 6 }} alignItems="center">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+        {/* Mobile-only mute button — sits above the action buttons */}
+        <Box sx={{ display: { xs: "flex", md: "none" }, justifyContent: "flex-end" }}>
+          <IconButton
+            onClick={toggleMute}
+            sx={{
+              color: "white",
+              background: "rgba(255,255,255,0.1)",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              "&:hover": { background: "rgba(255,255,255,0.2)" },
+            }}
           >
-            {/* <Stack spacing={1} alignItems="center" sx={{ textAlign: "center" }}>
-              <Typography
-                variant="overline"
-                sx={{
-                  letterSpacing: { xs: "0.2em", sm: "0.28em" },
-                  opacity: 0.85,
-                  color: alpha("#fff", 0.85),
-                }}
-              >
-                {title}
-              </Typography>
-              <Typography
-                variant="h2"
-                sx={{ fontWeight: 900, fontSize: { xs: 26, sm: 30, md: 40 }, lineHeight: 1.15 }}
-              >
-                {subtitle}
-              </Typography>
-              <Typography sx={{ opacity: 0.7, fontSize: { xs: 14, sm: 15 } }}>
-                Opening day: <strong>February 2, 2026</strong>
-              </Typography>
-            </Stack> */}
-          </motion.div>
+            {isMuted ? <VolumeOff /> : <VolumeUp />}
+          </IconButton>
+        </Box>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            style={{ width: "100%" }}
-          >
-            <GlassCard sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 4 } }}>
-              <CountdownRow>
-                <TimeBlock value={pad2(days)} label="Days" />
-                <Separator variant="h2">:</Separator>
-                <TimeBlock value={pad2(hours)} label="Hours" />
-                <Separator variant="h2">:</Separator>
-                <TimeBlock value={pad2(mins)} label="Mins" />
-                <Separator variant="h2">:</Separator>
-                <TimeBlock value={pad2(secs)} label="Seconds" />
-              </CountdownRow>
-            </GlassCard>
-          </motion.div>
+        <Button
+          onClick={handleJoin}
+          size={isSm ? "medium" : "large"}
+          sx={{
+            px: { xs: 3, sm: 3.5 },
+            py: { xs: 1.25, sm: 1.5 },
+            minWidth: { md: 230 },
+            borderRadius: 999,
+            fontWeight: 800,
+            textTransform: "none",
+            letterSpacing: "0.02em",
+            color: "#0e0f11",
+            backgroundColor: ACCENT,
+            boxShadow: `0 10px 30px ${alpha(ACCENT, 0.45)}`,
+            fontFamily: "Podkova",
+            "&:hover": { backgroundColor: "#ffd24a", boxShadow: `0 14px 36px ${alpha(ACCENT, 0.55)}`, transform: "translateY(-1px)" },
+            transition: "all .25s ease",
+          }}
+        >
+          {ctaText}
+        </Button>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-          >
-            <Button
-              onClick={handleJoin}
-              size={isSm ? "medium" : "large"}
-              sx={{
-                px: { xs: 3, sm: 3.5 },
-                py: { xs: 1.25, sm: 1.5 },
-                borderRadius: 999,
-                fontWeight: 800,
-                textTransform: "none",
-                letterSpacing: "0.02em",
-                color: "#0e0f11",
-                backgroundColor: ACCENT,
-                boxShadow: `0 10px 30px ${alpha(ACCENT, 0.45)}`,
-                fontFamily: "Podkova",
-                "&:hover": { backgroundColor: "#ffd24a", boxShadow: `0 14px 36px ${alpha(ACCENT, 0.55)}`, transform: "translateY(-1px)" },
-                transition: "all .25s ease",
-              }}
-            >
-              {ctaText}
-            </Button>
-          </motion.div>
-        </Stack>
-      </Container>
+        <Button
+          onClick={handleLearnMore}
+          size={isSm ? "medium" : "large"}
+          sx={{
+            px: { xs: 3, sm: 3.5 },
+            py: { xs: 1.25, sm: 1.5 },
+            minWidth: { md: 230 },
+            borderRadius: 999,
+            fontWeight: 800,
+            textTransform: "none",
+            letterSpacing: "0.02em",
+            color: "#fff",
+            backgroundColor: "rgba(255,255,255,0.12)",
+            backdropFilter: "blur(10px)",
+            border: "1px solid rgba(255,255,255,0.25)",
+            fontFamily: "Podkova",
+            "&:hover": { backgroundColor: "rgba(255,255,255,0.22)", transform: "translateY(-1px)" },
+            transition: "all .25s ease",
+          }}
+        >
+          Learn More
+        </Button>
+      </Box>
 
       <Waitlist open={openDialog} onClose={handleClose} onSubmit={handleSubmit} />
     </Section>
