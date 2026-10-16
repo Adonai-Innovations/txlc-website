@@ -17,6 +17,7 @@ import EventsPage from "./components/sub-pages/events/Events"
 import GroupEventsPage from "./components/sub-pages/events/GroupEvents";
 import CorporateEventsPage from "./components/sub-pages/events/CorporateEvents";
 import ExperiencePage from "./components/sub-pages/experience/Experience"
+import OpenPlayPage from "./components/sub-pages/open-play/OpenPlay";
 import PrivacyPage from "./components/sub-pages/privacy/Privacy";
 import NotFoundPage from "./components/sub-pages/not-found/NotFound";
 
@@ -56,6 +57,7 @@ function App() {
             <Route path="/events/group" element={<GroupEventsPage />} />
             <Route path="/events/corporate" element={<CorporateEventsPage />} />
             <Route path="/experience" element={<ExperiencePage />} />
+            <Route path="/open-play" element={<OpenPlayPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

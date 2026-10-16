@@ -1,6 +1,9 @@
 import React from "react";
-import { Box, Container, Typography, Button, Paper } from "@mui/material";
+import { Box, Container, Typography, Paper } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
+import { DAY_PRODUCTS } from "../../../lib/roller";
+import PackageBookingButtons from "./PackageBookingButtons";
+import { PACKAGE_SIZE_SUMMARY } from "../../../lib/site-facts";
 
 /* ----------------------------- Styled ----------------------------- */
 const Section = styled(Box)(({ theme }) => ({
@@ -133,28 +136,15 @@ const Body = styled(Typography)(({ theme }) => ({
   marginTop: 4,
 }));
 
-const BookBtn = styled(Button)(({ theme }) => ({
-  textTransform: "none",
-  fontWeight: 800,
-  borderRadius: 10,
-  paddingBlock: 6,
-  paddingInline: 14,
-  color: "#111",
-  backgroundColor: "#f2c230",
-  boxShadow: `0 10px 18px ${alpha("#f2c230", 0.35)}`,
-  fontFamily: "Podkova",
-  "&:hover": { backgroundColor: "#ffd24a", boxShadow: `0 12px 22px ${alpha("#ffd24a", 0.45)}` },
-}));
-
 /* --------------------------- Defaults ---------------------------- */
 const packagesDefault = [
   {
-    id: "core package",
+    // Core is three separate ROLLER products (weekday / Saturday / Sunday).
+    id: "core-package",
     title: "Core Package",
-    description:
-      "75-minute private arena session for 4-30 players!",
+    description: `75-minute private arena session. ${PACKAGE_SIZE_SUMMARY}`,
     image: "/events/core.jpg",
-    productId: "1692224",
+    days: DAY_PRODUCTS.core,
   },
 ];
 
@@ -187,15 +177,13 @@ export default function PartyRoomPackages({
                     />
                   </ImgShell>
 
-                  <Overlay>
+                  <Overlay sx={pkg.days?.length ? { flexDirection: "column", alignItems: "stretch" } : undefined}>
                     <Box sx={{ flex: 1, minWidth: 0 }}>
                       <TitleText>{pkg.title}</TitleText>
                       <Body>{pkg.description}</Body>
                     </Box>
 
-                    <BookBtn onClick={() => onBook?.(pkg)} size="small">
-                      Book Now
-                    </BookBtn>
+                    <PackageBookingButtons pkg={pkg} onBook={onBook} />
                   </Overlay>
                 </CardContent>
               </CardWrap>

@@ -3,6 +3,7 @@ import { Box, Container, Button, Stack, useTheme, useMediaQuery } from "@mui/mat
 import { styled } from "@mui/material/styles";
 import { motion } from "framer-motion";
 import Waitlist from "../../forms/Waitlist"; // ← adjust path if needed
+import { openProducts } from "../../../lib/roller";
 
 const Wrap = styled(Box)(({ theme }) => ({
   position: "relative",
@@ -49,11 +50,15 @@ const Cta = styled(Button)(({ theme }) => ({
 export default function EventsHero({
   line1 = "Epic Battles.",
   line2 = "Unforgettable Events.",
-  ctaText = "Join VIP Access List",
-  /** If false, skip modal and just call onCtaClick */
-  openOnClick = true,
-  /** Optional handler called after successful submit (receives form data) */
-  onCtaClick,
+  ctaText = "Book Now",
+  /**
+   * ADO-427: these heroes used to default to the pre-opening VIP email-capture
+   * modal. Now that the arena is open the CTA books, so the modal is opt-in and
+   * the default action is ROLLER checkout.
+   */
+  openOnClick = false,
+  /** Called on click (or after submit when openOnClick is true) */
+  onCtaClick = openProducts,
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));

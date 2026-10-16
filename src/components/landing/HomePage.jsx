@@ -1,4 +1,10 @@
 import SEOHead from "../seo/SEOHead";
+import {
+  GEO,
+  OPENING_HOURS_SPECIFICATION,
+  OPS_EMAIL,
+  PHONE_TEL,
+} from "../../lib/site-facts";
 import Hero from "./Hero";
 import Intro from "./Intro";
 import About from "./About";
@@ -10,15 +16,7 @@ const homepageSchema = [
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Texas Laser Combat",
-    "url": "https://txlasercombat.com",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://txlasercombat.com/?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    }
+    "url": "https://txlasercombat.com"
   },
   {
     "@context": "https://schema.org",
@@ -27,8 +25,8 @@ const homepageSchema = [
     "name": "Texas Laser Combat",
     "description": "Premier tactical laser tag arena in Plano, TX. Immersive 15,000 sq ft wasteland-themed arena with state-of-the-art equipment. Perfect for birthday parties, group events, corporate team building, and family fun.",
     "url": "https://txlasercombat.com",
-    "telephone": "+14696388499",
-    "email": "ops@txlasercombat.com",
+    "telephone": PHONE_TEL,
+    "email": OPS_EMAIL,
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "2300 Coit Road (off Irvine Drive) #400",
@@ -39,22 +37,15 @@ const homepageSchema = [
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 33.0198,
-      "longitude": -96.6989
+      "latitude": GEO.latitude,
+      "longitude": GEO.longitude
     },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday", "Sunday"],
-        "opens": "10:00",
-        "closes": "20:00"
-      }
-    ],
-    "image": "https://txlasercombat.com/alt-logo.png",
+    "openingHoursSpecification": OPENING_HOURS_SPECIFICATION,
+    "image": "https://txlasercombat.com/og-image.jpg",
     "logo": "https://txlasercombat.com/alt-logo.png",
     "priceRange": "$$",
     "currenciesAccepted": "USD",
-    "paymentAccepted": "Credit Card, Cash",
+    "paymentAccepted": "Credit Card, Debit Card, Cash",
     "areaServed": [
       { "@type": "City", "name": "Plano" },
       { "@type": "City", "name": "Frisco" },
@@ -78,7 +69,7 @@ const homepageSchema = [
     "logo": "https://txlasercombat.com/alt-logo.png",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+14696388499",
+      "telephone": PHONE_TEL,
       "contactType": "customer service",
       "areaServed": "US",
       "availableLanguage": "English"

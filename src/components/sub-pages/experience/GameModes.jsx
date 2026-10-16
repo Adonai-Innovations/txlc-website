@@ -89,9 +89,9 @@ const Caption = (props) => (
 );
 
 const MODES_DEFAULT = [
-  { id: "pirate", label: "Pirate Booty", image: "/missions/pirate.jpg" },
-  { id: "wasteland-wars", label: "Wasteland Wars", image: "/missions/wasteland-wars.png" },
-  { id: "zombie-outbreak", label: "Zombie Mutant Outbreak", image: "/missions/zombie-outbreak.jpg" },
+  { id: "pirate", label: "Pirate Booty", image: "/missions/pirate.webp" },
+  { id: "wasteland-wars", label: "Wasteland Wars", image: "/missions/wasteland-wars.webp" },
+  { id: "zombie-outbreak", label: "Zombie Mutant Outbreak", image: "/missions/zombie-outbreak.webp" },
 ];
 
 export default function GameModes({

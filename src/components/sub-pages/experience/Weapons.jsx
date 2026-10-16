@@ -124,7 +124,7 @@ const Cta = styled(Button)({
 
 const PARTY_EVENTS = [
   { id: "p90", label: "Pink P90", image: "/weapons/p90.png" },
-  { id: "rifle", label: "Battle Rifle", image: "/weapons/rifle.png" },
+  { id: "rifle", label: "Battle Rifle", image: "/weapons/rifle.webp" },
   { id: "weapon", label: "Weapon", image: "" },
   { id: "holiday", label: "Weapon", image: "" },
   { id: "team", label: "Weapon", image: "" },

@@ -1,39 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
-import {
-  Box,
-  Container,
-  Typography,
-  Button,
-  Stack,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Button, useMediaQuery, useTheme } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import { motion } from "framer-motion";
 import { VolumeUp, VolumeOff } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import Waitlist from "../forms/Waitlist";
+import { openProducts } from "../../lib/roller";
 
 const ACCENT = "#f2c230";
-const CANVAS = "#0e0f11";
-const ACCENT_TEXT = "#0e0f11";
-
-const pad2 = (n) => String(n).padStart(2, "0");
-
-function useCountdown(targetDate) {
-  const target = useMemo(() => targetDate.getTime(), [targetDate]);
-  const [diff, setDiff] = useState(() => Math.max(0, target - Date.now()));
-  useEffect(() => {
-    const id = setInterval(() => setDiff(Math.max(0, target - Date.now())), 1000);
-    return () => clearInterval(id);
-  }, [target]);
-  const total = diff;
-  const days = Math.floor(total / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-  const mins = Math.floor((total / (1000 * 60)) % 60);
-  const secs = Math.floor((total / 1000) % 60);
-  return { days, hours, mins, secs, finished: total === 0 };
-}
 
 const Section = styled(Box)(({ theme }) => ({
   position: "relative",
@@ -47,78 +20,6 @@ const Section = styled(Box)(({ theme }) => ({
     height: "100svh",
     paddingTop: "max(12px, env(safe-area-inset-top))",
     paddingBottom: "max(12px, env(safe-area-inset-bottom))",
-  },
-}));
-
-const GridOverlay = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  inset: 0,
-  backgroundImage:
-    "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
-  backgroundSize: "40px 40px, 40px 40px",
-  maskImage:
-    "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 65%, rgba(0,0,0,1) 100%)",
-  pointerEvents: "none",
-  [theme.breakpoints.down("sm")]: {
-    backgroundSize: "28px 28px, 28px 28px",
-    maskImage:
-      "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.85) 58%, rgba(0,0,0,1) 100%)",
-  },
-}));
-
-const GlassCard = styled(Box)(({ theme }) => ({
-  borderRadius: 24,
-  [theme.breakpoints.down("sm")]: {
-    borderRadius: 20,
-  },
-}));
-
-const Digit = styled(Typography)(({ theme }) => ({
-  fontWeight: 900,
-  fontSize: "clamp(34px, 9vw, 120px)",
-  lineHeight: 1,
-  letterSpacing: "0.02em",
-  fontVariantNumeric: "tabular-nums lining-nums",
-  textShadow: `0 8px 30px ${alpha("#000", 0.6)}`,
-  fontFamily: "PostNoBillsJaffna, sans-serif",
-}));
-
-const Label = styled(Typography)(({ theme }) => ({
-  fontWeight: 700,
-  letterSpacing: "0.22em",
-  fontSize: "13px",
-  opacity: 0.75,
-  textTransform: "uppercase",
-  [theme.breakpoints.down("sm")]: {
-    letterSpacing: "0.18em",
-    fontSize: 12,
-  },
-}));
-
-const Separator = styled(Typography)(({ theme }) => ({
-  fontWeight: 800,
-  fontSize: "clamp(32px, 7vw, 82px)",
-  opacity: 0.7,
-  transform: "translateY(-4px)",
-  fontFamily: "PostNoBillsJaffna, sans-serif",
-  [theme.breakpoints.down("sm")]: {
-    display: "none",
-  },
-}));
-
-const CountdownRow = styled(Stack)(({ theme }) => ({
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "flex-end",
-  textAlign: "center",
-  gap: theme.spacing(2.5),
-  [theme.breakpoints.up("sm")]: {
-    gap: theme.spacing(4),
-  },
-  [theme.breakpoints.down("sm")]: {
-    flexWrap: "nowrap",
-    overflow: "hidden",
-    gap: theme.spacing(2),
   },
 }));
 
@@ -137,16 +38,9 @@ const VideoContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-export default function HeroCountdown({
-  title = "TX LASER COMBAT",
-  subtitle = "Grand Opening Countdown",
-  ctaText = "Join VIP Access List",
-}) {
+export default function Hero({ ctaText = "Book Now" }) {
   const theme = useTheme();
   const isSm = useMediaQuery(theme.breakpoints.down("sm"));
-  const [openDialog, setOpenDialog] = useState(false);
-  const targetDate = useMemo(() => new Date(2026, 1, 5, 0, 0, 0), []);
-  const { days, hours, mins, secs, finished } = useCountdown(targetDate);
   const videoRef = React.useRef(null);
   const [isMuted, setIsMuted] = useState(true);
 
@@ -179,26 +73,35 @@ export default function HeroCountdown({
     };
   }, []);
 
-  const handleJoin = () => setOpenDialog(true);
-  const handleBookNow = () => {
-    if (window.RollerCheckout) {
-      window.RollerCheckout.show();
-    } else {
-      console.warn("Roller Checkout script not loaded");
-    }
-  };
-
-  const handleClose = () => setOpenDialog(false);
-  const handleSubmit = async (data) => {
-    console.log("Waitlist submission:", data);
-    setOpenDialog(false);
-  };
   const handleLearnMore = () => {
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
   };
 
   return (
-    <Section component="section" aria-label="Texas Laser Combat — tactical laser tag arena in Plano, TX">
+    <Section component="section">
+      {/*
+        The hero is a video with two buttons, so the homepage shipped with no
+        <h1> at all. This keeps the design untouched while giving the most
+        important page on the site a heading for crawlers and screen readers.
+      */}
+      <Box
+        component="h1"
+        sx={{
+          position: "absolute",
+          width: 1,
+          height: 1,
+          padding: 0,
+          margin: -1,
+          overflow: "hidden",
+          clip: "rect(0 0 0 0)",
+          clipPath: "inset(50%)",
+          whiteSpace: "nowrap",
+          border: 0,
+        }}
+      >
+        Texas Laser Combat — tactical laser tag arena in Plano, TX
+      </Box>
+
       <VideoContainer>
         <video
           ref={videoRef}
@@ -284,7 +187,7 @@ export default function HeroCountdown({
         </Box>
 
         <Button
-          onClick={handleJoin}
+          onClick={openProducts}
           size={isSm ? "medium" : "large"}
           sx={{
             px: { xs: 3, sm: 3.5 },
@@ -328,22 +231,6 @@ export default function HeroCountdown({
           Learn More
         </Button>
       </Box>
-
-      <Waitlist open={openDialog} onClose={handleClose} onSubmit={handleSubmit} />
     </Section>
-  );
-}
-
-function TimeBlock({ value, label }) {
-  return (
-    <Stack
-      alignItems="center"
-      spacing={0.75}
-      minWidth={{ xs: 52, sm: 92, md: 120 }}
-      sx={{ flex: { xs: "1 1 0", sm: "0 0 auto" } }}
-    >
-      <Digit variant="h1">{value}</Digit>
-      <Label component="span">{label}</Label>
-    </Stack>
   );
 }

@@ -164,19 +164,19 @@ const DATA_DEFAULT = [
     id: "youth",
     title: "Youth Events",
     items: [
-      { id: "birthday-kids", label: "Birthday Parties", image: "/events/updates/birthday-parties.png" },
+      { id: "birthday-kids", label: "Birthday Parties", image: "/events/updates/birthday-parties.webp" },
       { id: "open-play", label: "Open Play", image: "/events/updates/open-play.jpeg" },
-      { id: "family-fun", label: "Family Fun", image: "/events/updates/family-fun.png" },
+      { id: "family-fun", label: "Family Fun", image: "/events/updates/family-fun.webp" },
     ],
   },
   {
     id: "adult",
     title: "Adult Social Groups",
     items: [
-      { id: "singles", label: "Singles Meet Ups", image: "/events/updates/meet-ups.jpg" },
-      { id: "adult-family", label: "Family Fun", image: "/events/updates/family-fun.png" },
+      { id: "singles", label: "Singles Meet Ups", image: "/events/updates/meet-ups.webp" },
+      { id: "adult-family", label: "Family Fun", image: "/events/updates/family-fun.webp" },
       { id: "adult-open-play", label: "Open Play", image: "/events/updates/open-play.jpeg" },
-      { id: "parties", label: "Bachelor/ette Parties", image: "/events/updates/meet-ups.jpg" },
+      { id: "parties", label: "Bachelor/ette Parties", image: "/events/updates/meet-ups.webp" },
     ],
   },
   // {
@@ -193,8 +193,8 @@ const DATA_DEFAULT = [
     id: "corporate",
     title: "Corporate Events",
     items: [
-      { id: "team", label: "Team Building", image: "/events/updates/team-building.jpg" },
-      { id: "holiday-parties", label: "Holiday Parties", image: "/events/updates/holiday-parties.png" },
+      { id: "team", label: "Team Building", image: "/events/updates/team-building.webp" },
+      { id: "holiday-parties", label: "Holiday Parties", image: "/events/updates/holiday-parties.webp" },
       { id: "fundraisers", label: "Fundraisers", image: "/events/updates/fundraisers.JPG" },
     ],
   },

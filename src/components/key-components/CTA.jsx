@@ -9,7 +9,14 @@ import {
 } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import { motion } from "framer-motion";
-import Waitlist from "../forms/Waitlist";
+import { openProducts } from "../../lib/roller";
+import {
+  ADDRESS_LINE,
+  HOURS_LINES,
+  PHONE_AVAILABILITY_SUFFIX,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+} from "../../lib/site-facts";
 
 /* ----------------------------- Styled ----------------------------- */
 const Section = styled(Box)(({ theme, bgimg }) => ({
@@ -51,18 +58,8 @@ const Glass = styled(Box)(({ theme }) => ({
   width: "100%",
 }));
 
-/* Fall schedule — single group, effective Aug 1 */
-export const DEFAULT_HOUR_GROUPS = [
-  {
-    title: "Hours",
-    hours: [
-      "Wed–Thurs: 4pm – 10:30pm",
-      "Fri: 4pm – 11:30pm",
-      "Sat: 11am – 11:30pm",
-      "Sun: 11am – 8pm",
-    ],
-  },
-];
+/* Fall schedule — single group, effective Aug 1. See lib/site-facts.js. */
+export const DEFAULT_HOUR_GROUPS = [{ title: "Hours", hours: HOURS_LINES }];
 
 /* ---------------------------- Component ---------------------------- */
 export default function CTA({
@@ -71,9 +68,9 @@ export default function CTA({
   // hourGroups when explicitly passed so existing callers never break.
   hours,
   hourGroups = DEFAULT_HOUR_GROUPS,
-  address = "2300 Coit Road (off Irvine Drive) #400, Plano, TX 75075",
-  backgroundImage = "/events/corporate-events/join.jpg",
-  primaryCta = { label: "Join VIP Access List" },
+  address = ADDRESS_LINE,
+  backgroundImage = "/events/corporate-events/join.webp",
+  primaryCta = { label: "Book Now" },
   secondaryCta = {
     label: "Get Directions",
     href: "https://maps.google.com/?q=2300+Coit+Road+%23400,+Plano,+TX+75075",
@@ -87,18 +84,10 @@ export default function CTA({
   const resolvedGroups =
     hours !== undefined ? [{ title: "Hours", hours }] : hourGroups;
 
-  const [waitlistOpen, setWaitlistOpen] = React.useState(false);
-  const openWaitlist = () => setWaitlistOpen(true);
-  const closeWaitlist = () => setWaitlistOpen(false);
-  const submitWaitlist = async (data) => {
-    console.log("CTA waitlist submission:", data);
-    setWaitlistOpen(false);
-  };
-
   const handleBookNow = (e) => {
     e?.preventDefault?.();
     if (onBookNowClick) onBookNowClick();
-    else openWaitlist();
+    else openProducts();
   };
 
   return (
@@ -114,7 +103,7 @@ export default function CTA({
         >
           <Stack spacing={2.5} alignItems="center" textAlign="center">
             <Typography
-              component="h1"
+              component="h2"
               variant="h3"
               sx={{
                 fontWeight: 800,
@@ -170,6 +159,18 @@ export default function CTA({
                   }}
                 >
                   {address}
+                </Typography>
+
+                <Typography variant="body2" sx={{ lineHeight: 1.6, opacity: 0.9 }}>
+                  Call us at{" "}
+                  <Box
+                    component="a"
+                    href={`tel:${PHONE_TEL}`}
+                    sx={{ color: "inherit", fontWeight: 700 }}
+                  >
+                    {PHONE_DISPLAY}
+                  </Box>{" "}
+                  {PHONE_AVAILABILITY_SUFFIX}
                 </Typography>
               </Stack>
             </Glass>
@@ -228,10 +229,6 @@ export default function CTA({
         </Container>
       </Section>
 
-      {/* Embedded Waitlist (only used if onBookNowClick isn't provided) */}
-      {!onBookNowClick && (
-        <Waitlist open={waitlistOpen} onClose={closeWaitlist} onSubmit={submitWaitlist} />
-      )}
     </>
   );
 }

@@ -7,16 +7,17 @@
     <meta name="author" content="Texas Laser Combat" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
-    <!-- Fallback title/desc (react-helmet-async overrides per page) -->
+    <!--
+      Non-JS fallback title. React 19 hoists SEOHead's per-page <title> and the
+      browser/Googlebot use document.title after render, so this only ever
+      surfaces to clients that do not execute JS.
+    -->
     <title>Texas Laser Combat | Premier Tactical Laser Tag in Plano, TX</title>
-    <meta name="description" content="Experience high-adrenaline tactical laser tag at Texas Laser Combat in Plano, TX. 15,000 sq ft immersive wasteland arena, state-of-the-art equipment, and missions for ages 7+." />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/alt-logo.png" />
     <link rel="apple-touch-icon" href="/alt-logo.png" />
 
-    <!-- Canonical (react-helmet-async sets the real per-page canonical) -->
-    <link rel="canonical" href="https://txlasercombat.com/" />
 
     <!-- DNS Prefetch & Preconnect for external origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,29 +32,48 @@
       rel="stylesheet"
     />
 
-    <!-- Fallback Open Graph (react-helmet-async overrides per page) -->
+    <!--
+      Per-page title, description, canonical, og:url/title/description and
+      twitter:title/description are rendered by SEOHead and hoisted into <head>
+      by React 19. They are deliberately NOT duplicated here.
+
+      ADO-427: static copies used to sit in this file as a "fallback". Because
+      React hoists rather than replaces, every page ended up with two
+      <meta name="description"> and two <link rel="canonical"> — and on /events
+      the two canonicals disagreed (/ vs /events). Google discards conflicting
+      canonicals, so no page carried a usable canonical signal.
+
+      description and canonical are the two that genuinely hurt when duplicated
+      (a wrong snippet, and a canonical Google discards), so those are rendered
+      ONLY by SEOHead. The og:/twitter: title and description below stay as
+      homepage defaults because social scrapers do not execute JS and would
+      otherwise produce an empty share card; they take the first tag they find.
+
+      The real fix is prerendering each route so every page ships correct static
+      head tags — worth doing, but out of scope for ADO-427.
+    -->
+    <!-- Site-wide Open Graph defaults -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://txlasercombat.com/" />
     <meta property="og:title" content="Texas Laser Combat | Premier Tactical Laser Tag in Plano, TX" />
     <meta property="og:description" content="Experience high-adrenaline tactical laser tag at Texas Laser Combat in Plano, TX. 15,000 sq ft immersive wasteland arena for ages 7+." />
-    <meta property="og:image" content="https://txlasercombat.com/alt-logo.png" />
+    <meta property="og:image" content="https://txlasercombat.com/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Texas Laser Combat" />
     <meta property="og:locale" content="en_US" />
 
-    <!-- Fallback Twitter Card -->
+    <!-- Site-wide Twitter Card defaults -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@txlasercombat" />
     <meta name="twitter:title" content="Texas Laser Combat | Premier Tactical Laser Tag in Plano, TX" />
     <meta name="twitter:description" content="Experience high-adrenaline tactical laser tag at Texas Laser Combat in Plano, TX. 15,000 sq ft immersive wasteland arena for ages 7+." />
-    <meta name="twitter:image" content="https://txlasercombat.com/alt-logo.png" />
+    <meta name="twitter:image" content="https://txlasercombat.com/og-image.jpg" />
 
     <!-- Geo / Local SEO -->
     <meta name="geo.region" content="US-TX" />
     <meta name="geo.placename" content="Plano, TX" />
-    <meta name="geo.position" content="33.0198;-96.6989" />
-    <meta name="ICBM" content="33.0198, -96.6989" />
+    <meta name="geo.position" content="33.0306;-96.7703" />
+    <meta name="ICBM" content="33.0306, -96.7703" />
 
     <!-- Roller Checkout — deferred so it never blocks rendering -->
     <script

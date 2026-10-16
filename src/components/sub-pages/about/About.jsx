@@ -1,5 +1,6 @@
 import React from 'react'
 import SEOHead from '../../seo/SEOHead'
+import { FAQ, toSchemaQuestion } from '../../../lib/site-facts'
 
 // About page components
 import AboutHero from './AboutHero'
@@ -32,46 +33,11 @@ const aboutSchema = [
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is your cancellation policy?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "If canceled with more than 72 hours' notice, full refund. With 24-72 hours' notice, forfeit 50% of paid amount, remaining portion can also be refunded to a Gift Card. With less than 24 hours' notice or no-show, forfeit 100% of paid amount. If walking out, full amount retained. No refunds for completed sessions, participant misconduct, or non-compliance. Rescheduling incurs no penalty."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How long is a laser tag session at Texas Laser Combat?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A standard laser tag session lasts 75 minutes, which includes approximately 15 minutes for safety briefings and gearing up, leaving 1 hour of active gameplay."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are there age or height restrictions to play laser tag?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "You must be 7 years old or 46\" in order to play."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is there a parent viewing area at Texas Laser Combat?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, Texas Laser Combat provides a designated parent viewing area where you can watch the action safely and comfortably."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What should I wear for a tactical laser tag session?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Wear closed-toe shoes for safety. The arena is cool at the start, but can heat up as you play, so dress in comfortable, breathable clothing suitable for physical activity."
-        }
-      }
+      toSchemaQuestion(FAQ.cancellation),
+      toSchemaQuestion(FAQ.sessionLength, "How long is a laser tag session at Texas Laser Combat?"),
+      toSchemaQuestion(FAQ.age, "Are there age or height restrictions to play laser tag?"),
+      toSchemaQuestion(FAQ.parentArea, "Is there a parent viewing area at Texas Laser Combat?"),
+      toSchemaQuestion(FAQ.whatToWear)
     ]
   }
 ];

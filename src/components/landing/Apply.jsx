@@ -38,7 +38,7 @@ const CTA = styled(Button)(({ theme }) => ({
 
 export default function Apply({
   title = "Join our team!",
-  description = `We're opening a tactical laser tag arena and looking for energetic, customer-focused team members to create unforgettable experiences for our guests.`,
+  description = `Our tactical laser tag arena in Plano is open and growing, and we're looking for energetic, customer-focused team members to create unforgettable experiences for our guests.`,
   imageSrc = "/landing/team.jpg",
   imageAlt = "Hiring banner",
   onApply,
