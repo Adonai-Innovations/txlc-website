@@ -63,7 +63,7 @@ export default function EventImageCarousel({
   title = "Plan the perfect event",
   blurb = "We take care of the planning, the gear, and the flow, so your event runs smoothly from start to finish.",
   images = [
-    "/events/updates/plan-the-perfect1.jpg",
+    "/events/updates/plan-the-perfect1.webp",
     "/events/updates/plan-the-perfect2.jpeg",
     "/events/updates/plan-the-perfect3.jpeg",
   ],

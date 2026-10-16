@@ -3,10 +3,11 @@ import SEOHead from '../../seo/SEOHead';
 import EventSubHero from './EventSubHero';
 import EventIntroSection from './EventIntroSection';
 import EventFeatures from './EventFeatures';
-import PartyRoomPackages from './PartyRoomPackages';
+import FacilityPackages from './FacilityPackages';
 import EventImageCarousel from './EventImageCarousel';
 import CTA from '../../key-components/CTA';
 import EventsFAQ from './EventsFAQ';
+import { openProducts } from '../../../lib/roller';
 
 const groupEventsSchema = [
   {
@@ -52,7 +53,7 @@ export default function GroupEvents() {
           image="/events/sub/hero.jpg"
           contentBg="#3E5C47" // Lighter slate for groups
           bgPosition="center 30%" // Shift focus higher up
-          onCtaClick={() => window.RollerCheckout ? window.RollerCheckout.show() : window.open('https://ecom.roller.app/texaslasercombat/checkout/en-us/products', '_blank')}
+          onCtaClick={openProducts}
         />
         <EventIntroSection
           heading="Built for squads, not just play"
@@ -61,8 +62,8 @@ export default function GroupEvents() {
             "From kids’ parties and youth group outings to senior activities and family celebrations, we handle the setup and flow so your group can focus on having fun. With adjustable game modes and experienced staff on site, it’s an engaging experience that works for all ages, abilities, and group sizes, without feeling overwhelming or chaotic."
           ]}
           ctaText="Book online"
-          image="/events/group-events/Squads.jpg"
-          onCtaClick={() => window.RollerCheckout ? window.RollerCheckout.show() : window.open('https://ecom.roller.app/texaslasercombat/checkout/en-us/products', '_blank')}
+          image="/events/group-events/Squads.webp"
+          onCtaClick={openProducts}
         />
         <EventFeatures
           heading="Great for..."
@@ -86,6 +87,7 @@ export default function GroupEvents() {
             }
           ]}
         />
+        <FacilityPackages />
         <CTA />
         <EventsFAQ />
       </main>

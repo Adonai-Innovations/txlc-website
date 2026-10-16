@@ -7,6 +7,7 @@ import FacilityPackages from './FacilityPackages';
 import CTA from '../../key-components/CTA';
 import EventImageCarousel from './EventImageCarousel';
 import EventsFAQ from './EventsFAQ';
+import { openProducts } from '../../../lib/roller';
 
 const corporateSchema = [
   {
@@ -52,7 +53,7 @@ export default function CorporateEvents() {
           image="/events/sub/hero.jpg"
           contentBg="#1B2E40"
           bgPosition="center 30%"
-          onCtaClick={() => window.RollerCheckout ? window.RollerCheckout.show() : window.open('https://ecom.roller.app/texaslasercombat/checkout/en-us/products', '_blank')}
+          onCtaClick={openProducts}
         />
         <EventIntroSection
           heading="Designed for teams, not just casual fun"
@@ -62,11 +63,11 @@ export default function CorporateEvents() {
           ]}
           ctaText="Book online"
           image="/events/corporate-events/designed.jpeg"
-          onCtaClick={() => window.RollerCheckout ? window.RollerCheckout.show() : window.open('https://ecom.roller.app/texaslasercombat/checkout/en-us/products', '_blank')}
+          onCtaClick={openProducts}
         />
         <EventFeatures
           heading="Great for..."
-          image="/events/corporate-events/great-for.png"
+          image="/events/corporate-events/great-for.webp"
           features={[
             {
               title: "Team building",

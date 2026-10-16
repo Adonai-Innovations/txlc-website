@@ -86,7 +86,7 @@ export default function HeroIntroSplit({
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }),
   waitlistDisabled = false,
 
-  imageSrc = "/landing/immersive.png",
+  imageSrc = "/landing/immersive.webp",
   imageAlt = "Texas Laser Combat preview",
 }) {
   const theme = useTheme();

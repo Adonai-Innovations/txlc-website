@@ -3,7 +3,7 @@ import { Box, Container } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 
 const BASE_URL = (import.meta?.env?.BASE_URL ?? "/").replace(/\/+/g, "/");
-const DEFAULT_SRC = `/experience.png`;
+const DEFAULT_SRC = `/experience.webp`;
 
 const Wrap = styled(Box)(({ theme }) => ({
   position: "relative",

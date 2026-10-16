@@ -11,6 +11,7 @@ import {
 import { styled, alpha } from "@mui/material/styles";
 import { motion } from "framer-motion";
 import Waitlist from "../../forms/Waitlist"; // <- adjust the path if needed
+import { openProducts } from "../../../lib/roller";
 
 const Wrap = styled(Box)(({ theme }) => ({
   position: "relative",
@@ -61,11 +62,15 @@ const Cta = styled(Button)(({ theme }) => ({
 export default function HeroEpic({
   line1 = "STEP INTO THE ACTION",
   line2 = "Plan your attack. Know the terrain. Any successful mission starts with recon.",
-  ctaText = "Join VIP Access List",
-  /** If false, skip modal and just call onCtaClick */
-  openOnClick = true,
-  /** Optional handler invoked after successful submit: onCtaClick(formData) */
-  onCtaClick,
+  ctaText = "Book Now",
+  /**
+   * ADO-427: these heroes used to default to the pre-opening VIP email-capture
+   * modal. Now that the arena is open the CTA books, so the modal is opt-in and
+   * the default action is ROLLER checkout.
+   */
+  openOnClick = false,
+  /** Called on click (or after submit when openOnClick is true) */
+  onCtaClick = openProducts,
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));

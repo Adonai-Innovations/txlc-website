@@ -17,6 +17,13 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import XIcon from "@mui/icons-material/X";
 import { Link as RouterLink } from "react-router-dom";
+import { giftCardUrl } from "../../lib/roller";
+import {
+  ADDRESS_LINE,
+  PHONE_AVAILABILITY_SUFFIX,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+} from "../../lib/site-facts";
 
 const BG = `transparent`;
 const FG = alpha("#fff", 0.88);
@@ -100,7 +107,9 @@ export default function Footer({ logoSrc = "/alt-logo.png" }) {
     { label: "About", to: "/about" },
     { label: "Events", to: "/events" },
     { label: "Experience", to: "/experience" },
+    { label: "Open Play", to: "/open-play" },
     { label: "Lost & Found", to: "/about#get-in-touch" },
+    { label: "Gift Cards", href: giftCardUrl() },
     { label: "Waiver", href: "https://waiver.roller.app/TexasLaserCombat" },
   ];
 
@@ -170,8 +179,16 @@ export default function Footer({ logoSrc = "/alt-logo.png" }) {
                 rel="noopener noreferrer"
                 style={{ color: "inherit", textDecoration: "none" }}
               >
-                2300 Coit Road (off Irvine Drive) #400, Plano, TX 75075
+                {ADDRESS_LINE}
               </a>
+            </Typography>
+
+            <Typography sx={{ color: MUTED, mb: 3 }}>
+              Call us at{" "}
+              <MuiLink href={`tel:${PHONE_TEL}`} underline="hover" color="inherit" sx={{ fontWeight: 700 }}>
+                {PHONE_DISPLAY}
+              </MuiLink>{" "}
+              {PHONE_AVAILABILITY_SUFFIX}
             </Typography>
 
             <ColTitle sx={{ mb: 1.5 }}>Stay up to date</ColTitle>

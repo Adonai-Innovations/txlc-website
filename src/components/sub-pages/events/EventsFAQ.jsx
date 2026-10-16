@@ -11,6 +11,7 @@ import {
 import { styled, alpha } from "@mui/material/styles";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import { motion } from "framer-motion";
+import { FAQ } from "../../../lib/site-facts";
 
 const Section = styled(Box)(({ theme }) => ({
   position: "relative",
@@ -73,26 +74,11 @@ export default function EventsFAQ({
   title = "Frequently Asked Questions",
   subtitle = "Quick answers to common questions.",
   items = [
-    {
-      q: "What is your cancellation policy?",
-      a: "If canceled with more than 72 hours' notice, full refund. With 24-72 hours' notice, forfeit 50% of paid amount, remaining portion can also be refunded to a Gift Card. With less than 24 hours' notice or no-show, forfeit 100% of paid amount. If walking out, full amount retained. No refunds for completed sessions, participant misconduct, or non-compliance. Rescheduling incurs no penalty."
-    },
-    {
-      q: "How long is a session?",
-      a: "A standard laser tag session lasts 75 minutes, which includes approximately 15 minutes for safety briefings and gearing up, leaving 1 hour of active gameplay."
-    },
-    {
-      q: "Are there age or height restrictions to play?",
-      a: "Players must be at least 7 years old to participate. There are no height restrictions for playing at Texas Laser Combat."
-    },
-    {
-      q: "Is there a parent viewing area available?",
-      a: "Yes, Texas Laser Combat provides a designated parent viewing area where you can watch the action safely and comfortably."
-    },
-    {
-      q: "What should I wear for a tactical laser tag session?",
-      a: "Wear closed-toe shoes for safety. The arena is cool at the start, but can heat up as you play, so dress in comfortable, breathable clothing suitable for physical activity."
-    },
+    FAQ.cancellation,
+    FAQ.sessionLength,
+    FAQ.age,
+    FAQ.parentArea,
+    FAQ.whatToWear,
     {
       q: "Can I consume alcohol at Texas Laser Combat?",
       a: "Alcohol consumption is permitted only in a reserved private room with a pre-arranged drink agreement. No alcohol is allowed in the arena or public areas."
@@ -145,18 +131,12 @@ export default function EventsFAQ({
       q: "What happens if my party runs over the scheduled time in the party room?",
       a: "Party rooms are reserved for the allotted time in your package. If you wish to extend your time, it is subject to availability and may incur an additional fee. Please coordinate with an Entry Ops Specialist as soon as possible."
     },
-    {
-      q: "What is the minimum and maximum group size?",
-      a: "Minimum is 4 players; maximum 42 per session in our arena. Larger groups can be accommodated with staggered sessions or full-facility rentals."
-    },
+    FAQ.groupSize,
     {
       q: "How long does a session last?",
       a: "Standard sessions are 75 minutes in the arena for safety briefing, arming, and play. Extended hours are available as add-ons."
     },
-    {
-      q: "What payment methods are accepted?",
-      a: "We accept credit cards, cash, and corporate checks. Any balance must be paid 3 days prior to session."
-    },
+    FAQ.payment,
     {
       q: "Is the venue accessible for all players?",
       a: "Yes, the main level of our multi-level arena and facilities are designed for varying mobility with wide paths and versatile equipment available."

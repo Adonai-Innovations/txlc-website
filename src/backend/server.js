@@ -64,6 +64,19 @@ const VIPUser = mongoose.model('VIPUser', vipSchema);
 app.use(cors());
 app.use(express.json());
 
+/**
+ * Escapes guest-supplied values before they are interpolated into notification
+ * email HTML, so a stray `<` in a submission cannot break or inject markup.
+ * The older routes in this file still interpolate raw input — see ADO-427 notes.
+ */
+const escapeHtml = (value) =>
+    String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+
 // Validation: Ensure critical environment variables are loaded
 const requiredEnv = ['EMAIL_USER', 'EMAIL_PASS'];
 const missingEnv = requiredEnv.filter(key => !process.env[key]);
@@ -281,6 +294,48 @@ app.post('/api/contact', async (req, res) => {
     } catch (error) {
         console.error('❌ Error sending contact email:', error);
         res.status(500).json({ message: 'Failed to send email.' });
+    }
+});
+
+// Donation Request Route (ADO-427)
+// The /about FAQ promises an online donation request form; this is where it
+// lands. Requests go to Ops rather than the shared EMAIL_USER inbox so they can
+// be triaged separately from contact-form traffic.
+app.post('/api/donation-request', async (req, res) => {
+    const { organization, contactName, email, phone, eventDate, details } = req.body ?? {};
+
+    if (!organization || !contactName || !email || !details) {
+        return res.status(400).json({ message: 'Missing required fields.' });
+    }
+
+    console.log(`\n🎁 Received Donation Request from ${organization} (${contactName})`);
+
+    const recipient = process.env.DONATION_EMAIL || 'ops@txlasercombat.com';
+
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: recipient,
+        replyTo: email,
+        subject: `Donation Request: ${organization}`,
+        html: `
+            <h3>New Donation Request — txlasercombat.com</h3>
+            <p><strong>Organization:</strong> ${escapeHtml(organization)}</p>
+            <p><strong>Contact:</strong> ${escapeHtml(contactName)}</p>
+            <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+            <p><strong>Phone:</strong> ${escapeHtml(phone) || 'Not provided'}</p>
+            <p><strong>Event / campaign date:</strong> ${escapeHtml(eventDate) || 'Not provided'}</p>
+            <p><strong>Request details:</strong></p>
+            <p>${escapeHtml(details).replace(/\n/g, '<br/>')}</p>
+        `,
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log(`✅ Donation request emailed to ${recipient}`);
+        res.status(200).json({ message: 'Donation request submitted successfully!' });
+    } catch (error) {
+        console.error('❌ Error sending donation request email:', error);
+        res.status(500).json({ message: 'Failed to submit donation request.' });
     }
 });
 

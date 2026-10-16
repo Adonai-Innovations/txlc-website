@@ -225,6 +225,7 @@ export default function TopbarResponsiveNav({
         { label: "Corporate Events", to: "/events/corporate" },
       ],
     },
+    { label: "Open Play", to: "/open-play" },
     { label: "Experience", to: "/experience" },
   ],
   onJoinWaitlist,
