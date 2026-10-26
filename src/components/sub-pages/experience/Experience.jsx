@@ -5,6 +5,7 @@ import Map from "./Map";
 import ExperienceContent from "./ExperienceContent";
 import Carousel from "./Carousel";
 import GameModes from "./GameModes";
+import { VideoSection } from "../../key-components/VideoEmbed";
 
 const experienceSchema = [
   {
@@ -26,7 +27,7 @@ const experienceSchema = [
     "@context": "https://schema.org",
     "@type": "SportsActivityLocation",
     "name": "Texas Laser Combat Arena",
-    "description": "15,000 square foot immersive wasteland-themed laser tag arena in Plano, TX. Features multi-level gameplay, vibration-feedback headsets, and a wide selection of laser tag weapons including rifles, SMGs, and sniper rifles.",
+    "description": "15,000 square foot immersive wasteland-themed laser tag arena in Plano, TX. Features multi-level gameplay, vibration-feedback headsets, and over 18 laser tag weapons including rifles, SMGs, and sniper rifles.",
     "url": "https://txlasercombat.com/experience",
     "address": {
       "@type": "PostalAddress",
@@ -39,18 +40,37 @@ const experienceSchema = [
   }
 ];
 
+/** Board-approved walkthrough videos (ADO-427). */
+const EXPERIENCE_VIDEOS = [
+  {
+    videoId: "i7aFh2zfy8o",
+    title: "Texas Laser Combat — arena walkthrough",
+    caption: "A look inside the 15,000 sq ft wasteland arena.",
+  },
+  {
+    videoId: "56UIgeUjSNo",
+    title: "Texas Laser Combat — gameplay",
+    caption: "Mission-based gameplay as it actually runs.",
+  },
+];
+
 export default function ExperiencePage() {
   return (
     <>
       <SEOHead
         title="The Experience | 15,000 Sq Ft Wasteland Arena & Arsenal in Plano, TX"
-        description="Explore Texas Laser Combat's 15,000 sq ft immersive wasteland-themed laser tag arena in Plano, TX. State-of-the-art weapons, vibration-feedback headsets, multi-level gameplay, and amenities for the ultimate tactical experience."
+        description="Explore Texas Laser Combat's 15,000 sq ft immersive wasteland-themed laser tag arena in Plano, TX. Over 18 weapons, vibration-feedback headsets, multi-level gameplay, and amenities for the ultimate tactical experience."
         canonical="/experience"
         schema={experienceSchema}
       />
       <main>
         <ExperienceHero />
         <Carousel />
+        <VideoSection
+          heading="See it in action"
+          subheading="Two short walkthroughs of the arena and a live session."
+          videos={EXPERIENCE_VIDEOS}
+        />
         <GameModes />
         <Map fit="contain" backdrop="#111" />
         <ExperienceContent />

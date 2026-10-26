@@ -10,14 +10,20 @@ export default defineConfig({
 
     rollupOptions: {
       output: {
-        // Manual chunk splitting for long-term browser caching
+        // Manual chunk splitting for long-term browser caching.
+        //
+        // Only list packages src/ actually imports. ADO-427 found a 'three'
+        // entry for three/@react-three even though nothing imported them: the
+        // emitted chunk held react-dom (dragged in transitively), so 174 KB of
+        // React was shipped under a misleading name while `react-vendor` was
+        // only 12 KB. react-dom is named explicitly here so it stays in the
+        // long-lived vendor chunk instead of being rebuilt with app code.
         manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
+          'react-vendor': ['react', 'react-dom', 'react-dom/client', 'scheduler'],
           'router': ['react-router-dom'],
           'mui': ['@mui/material', '@emotion/react', '@emotion/styled'],
           'mui-icons': ['@mui/icons-material'],
           'motion': ['framer-motion'],
-          'three': ['three', '@react-three/fiber', '@react-three/drei'],
           'helmet': ['react-helmet-async'],
         },
       },

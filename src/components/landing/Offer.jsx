@@ -193,14 +193,14 @@ export default function OffersShowcase({
       onClick: () => navigate("/experience"),
     },
     {
-      img: "/landing/parties2.png",
+      img: "/landing/parties2.webp",
       heading: "Groups and parties",
       sub: "Host events, corporate events & more",
       cta: "Learn more",
       onClick: () => navigate("/events"),
     },
     {
-      img: "/landing/food2.jpg",
+      img: "/landing/food2.webp",
       heading: "Food and beverages",
       sub: "Enjoy unique food offerings and catering",
       cta: "Learn more",

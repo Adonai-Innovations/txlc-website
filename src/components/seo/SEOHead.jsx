@@ -2,7 +2,9 @@ import { Helmet } from "react-helmet-async";
 
 const SITE_NAME = "Texas Laser Combat";
 const BASE_URL = "https://txlasercombat.com";
-const DEFAULT_IMAGE = `${BASE_URL}/alt-logo.png`;
+// A 1200x630 arena photo, which is what Open Graph wants. The logo that
+// used to sit here is square and letterboxed badly in every share preview.
+const DEFAULT_IMAGE = `${BASE_URL}/og-image.jpg`;
 
 export default function SEOHead({
   title,

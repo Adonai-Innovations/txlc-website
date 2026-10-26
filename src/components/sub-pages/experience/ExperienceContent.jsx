@@ -118,7 +118,7 @@ export default function AmenitiesStaggered() {
         <Shell>
           {/* Reusable banner */}
           {/* <FeatureBanner
-            src="/experience.png"
+            src="/experience.webp"
             alt="Texas Laser Combat arena overview"
             sx={{ mb: (theme) => theme.spacing(8) }}
           /> */}
@@ -132,13 +132,13 @@ export default function AmenitiesStaggered() {
               />
             </Grid>
             <Grid item xs={12} sm={6} sx={{ minWidth: 0, flexBasis: { sm: "50%" }, maxWidth: { sm: "50%" } }}>
-              <ImgCard elevation={0}><Img src="/experience/food2.jpg" alt="Concession snacks and drinks area" /></ImgCard>
+              <ImgCard elevation={0}><Img src="/experience/food2.webp" alt="Concession snacks and drinks area" /></ImgCard>
             </Grid>
           </Row>
 
           <Row>
             <Grid item xs={12} sm={6} sx={{ minWidth: 0, flexBasis: { sm: "50%" }, maxWidth: { sm: "50%" } }}>
-              <ImgCard elevation={0}><Img src="/experience/comfort2.png" alt="Lounge seating area" /></ImgCard>
+              <ImgCard elevation={0}><Img src="/experience/comfort2.webp" alt="Lounge seating area" /></ImgCard>
             </Grid>
             <Grid item xs={12} sm={6} sx={{ minWidth: 0, flexBasis: { sm: "50%" }, maxWidth: { sm: "50%" } }}>
               <TextBlock

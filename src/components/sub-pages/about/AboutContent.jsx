@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Container } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
-import arenaRight from "/about/updates/about-us.png"; // first section (right)
+import arenaRight from "/about/updates/about-us.webp"; // first section (right)
 import arenaLeft from "/about/updates/Immersive.JPG";  // second section (left)
 
 const ACCENT = "#f2c230";
@@ -136,7 +136,7 @@ export default function AboutContent() {
             <Copy>
               <Eyebrow>Welcome</Eyebrow>
               <Title variant="h4">
-                Welcome to Texas Laser Combat, North Dallas’ newest premier
+                Welcome to Texas Laser Combat, a premier
                 destination for tactical laser tag adventures in Plano, TX.
               </Title>
               <Body>

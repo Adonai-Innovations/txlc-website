@@ -7,10 +7,13 @@ import {
   AccordionSummary,
   AccordionDetails,
   Stack,
+  Button,
 } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import { motion } from "framer-motion";
+import { FAQ } from "../../../lib/site-facts";
+import DonationRequest from "../../forms/DonationRequest";
 
 const Section = styled(Box)(({ theme }) => ({
   position: "relative",
@@ -70,26 +73,11 @@ export default function AboutFAQ({
   title = "Frequently Asked Questions",
   subtitle = "Quick answers to common questions.",
   items = [
-    {
-      q: "What is your cancellation policy?",
-      a: "If canceled with more than 72 hours' notice, full refund. With 24-72 hours' notice, forfeit 50% of paid amount, remaining portion can also be refunded to a Gift Card. With less than 24 hours' notice or no-show, forfeit 100% of paid amount. If walking out, full amount retained. No refunds for completed sessions, participant misconduct, or non-compliance. Rescheduling incurs no penalty."
-    },
-    {
-      q: "How long is a session?",
-      a: "A standard laser tag session lasts 75 minutes, which includes approximately 15 minutes for safety briefings and gearing up, leaving 1 hour of active gameplay."
-    },
-    {
-      q: "Are there age or height restrictions to play?",
-      a: `You must be 7 years old or 46" in order to play.`
-    },
-    {
-      q: "Is there a parent viewing area available?",
-      a: "Yes, Texas Laser Combat provides a designated parent viewing area where you can watch the action safely and comfortably."
-    },
-    {
-      q: "What should I wear for a tactical laser tag session?",
-      a: "Wear closed-toe shoes for safety. The arena is cool at the start, but can heat up as you play, so dress in comfortable, breathable clothing suitable for physical activity."
-    },
+    FAQ.cancellation,
+    FAQ.sessionLength,
+    FAQ.age,
+    FAQ.parentArea,
+    FAQ.whatToWear,
     {
       q: "What are the waivers, and who needs to complete them?",
       a: "Waivers outline the risks associated with laser tag and must be signed for each player before participating. Parents or guardians are required to sign waivers for all players under 18 years of age. Waivers should be completed in advance online for faster check-in and are valid for 1 year."
@@ -120,11 +108,16 @@ export default function AboutFAQ({
     },
     {
       q: "Does Texas Laser Combat accept donation requests?",
-      a: "Yes, we accept donation requests. Please complete the online donation request form on our website, and we will respond within 1-2 weeks."
+      a: "Yes, we accept donation requests. Complete the donation request form below and we will respond within 1-2 weeks.",
+      // ADO-427: this answer promised a form that did not exist anywhere on the
+      // site. The action renders the request form inline, right where the
+      // promise is made.
+      action: "donation",
     },
   ],
 }) {
   const [active, setActive] = useState(-1);
+  const [donationOpen, setDonationOpen] = useState(false);
 
   return (
     <Section>
@@ -167,12 +160,35 @@ export default function AboutFAQ({
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>{item.a}</Typography>
+                  {item.action === "donation" && (
+                    <Button
+                      onClick={() => setDonationOpen(true)}
+                      sx={{
+                        mt: 2,
+                        borderRadius: 999,
+                        textTransform: "none",
+                        fontWeight: 800,
+                        fontFamily: "Podkova",
+                        px: 2.5,
+                        background: "#f2c230",
+                        color: "#101113",
+                        "&:hover": { background: "#ffd95a" },
+                      }}
+                    >
+                      Open donation request form
+                    </Button>
+                  )}
                 </AccordionDetails>
               </Row>
             ))}
           </Box>
         </Shell>
       </Container>
+
+      <DonationRequest
+        open={donationOpen}
+        onClose={() => setDonationOpen(false)}
+      />
     </Section>
   );
 }

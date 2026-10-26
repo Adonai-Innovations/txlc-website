@@ -70,28 +70,24 @@ export default function AboutTestimonials({
       role: "Parent",
       rating: 5,
       quote: "Our group ranged in age from 11 to 50, and every single one of us had an absolute blast. We’d never been to TX Laser Combat before, but now that we have, we won’t go anywhere else going forward.",
-      avatar: "/avatars/alex.jpg",
     },
     {
       name: "Vanessa",
       role: "Customer",
       rating: 5,
       quote: "Excellent staff and experience. Wonderful as a work function.",
-      avatar: "/avatars/priya.jpg",
     },
     {
       name: "Ginger",
       role: "Event Planner",
       rating: 5,
       quote: "Despite the challenges you were handed, your team truly went above and beyond—everything was handled beautifully and felt completely effortless on our end. The planning, execution, and overall experience could not have been better. Most importantly, the kids had the absolute best time, which made the day so special for all of us. We truly cannot sing your praises highly enough.",
-      avatar: "/avatars/jordan.jpg",
     },
     {
       name: "Crystal Alaina",
       role: "Parent",
       rating: 5,
       quote: "10/10 recommend. My 16 yr old and his friends loved it. The adults loved it as well.",
-      avatar: "/avatars/jordan.jpg",
     },
   ],
 }) {

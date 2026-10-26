@@ -1,5 +1,6 @@
 import React from 'react'
 import SEOHead from '../../seo/SEOHead'
+import { FAQ, toSchemaQuestion } from '../../../lib/site-facts'
 
 // About Components
 import EventsHero from './EventsHero'
@@ -50,60 +51,18 @@ const eventsSchema = [
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is your cancellation policy for events?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "If canceled with more than 72 hours' notice, full refund. With 24-72 hours' notice, forfeit 50% of paid amount, remaining portion can also be refunded to a Gift Card. With less than 24 hours' notice or no-show, forfeit 100% of paid amount. If walking out, full amount retained. No refunds for completed sessions, participant misconduct, or non-compliance. Rescheduling incurs no penalty."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How long is a laser tag session?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A standard laser tag session lasts 75 minutes, which includes approximately 15 minutes for safety briefings and gearing up, leaving 1 hour of active gameplay."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are there age restrictions for laser tag?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Players must be at least 7 years old to participate. There are no height restrictions for playing at Texas Laser Combat."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is there a parent viewing area?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, Texas Laser Combat provides a designated parent viewing area where you can watch the action safely and comfortably."
-        }
-      }
+      toSchemaQuestion(FAQ.cancellation, "What is your cancellation policy for events?"),
+      toSchemaQuestion(FAQ.sessionLength, "How long is a laser tag session?"),
+      toSchemaQuestion(FAQ.age, "Are there age or height restrictions for laser tag?"),
+      toSchemaQuestion(FAQ.parentArea, "Is there a parent viewing area?"),
+      toSchemaQuestion(FAQ.whatToWear),
+      toSchemaQuestion(FAQ.payment),
+      toSchemaQuestion(FAQ.groupSize)
     ]
   }
 ];
 
 export default function EventsPage() {
-  const handleBook = (pkg) => {
-    if (pkg?.productId) {
-      if (window.RollerCheckout) {
-        window.RollerCheckout.show({ productId: pkg.productId });
-      } else {
-        const url = `https://ecom.roller.app/texaslasercombat/checkout/en-us/product/${pkg.productId}`;
-        window.open(url, '_blank');
-      }
-    } else {
-      if (window.RollerCheckout) {
-        window.RollerCheckout.show();
-      } else {
-        console.warn("Roller Checkout not loaded");
-      }
-    }
-  };
-
   return (
     <>
       <SEOHead
@@ -114,8 +73,8 @@ export default function EventsPage() {
       />
       <main>
         <EventsHero />
-        <PartyRoomPackages onBook={handleBook} />
-        <FacilityPackages onBook={handleBook} />
+        <PartyRoomPackages />
+        <FacilityPackages />
         <EventImageCarousel />
         <EventTypes />
         <EventsFAQ />

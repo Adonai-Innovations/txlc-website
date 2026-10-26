@@ -94,7 +94,7 @@ const PledgeBar = styled(Box)(({ theme }) => ({
 
 export default function CommunityCommitment({
   title = "Our Community Commitment",
-  woundedWarriorLogo = "/community/wounded-warrior.png",
+  woundedWarriorLogo = "/community/wounded-warrior.webp",
   bcrfLogo = "/community/breast-cancer.png",
   pinkLinkHref = "#",
 }) {
