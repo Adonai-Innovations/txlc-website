@@ -11,6 +11,7 @@ import CommunityEvents from './CommunityEvents';
 import FacilityPackages from './FacilityPackages';
 import EventsFAQ from './EventsFAQ';
 import CTA from '../../key-components/CTA'
+import PosterSection from '../../key-components/PosterSection'
 
 const eventsSchema = [
   {
@@ -75,6 +76,13 @@ export default function EventsPage() {
         <EventsHero />
         <PartyRoomPackages />
         <FacilityPackages />
+        <PosterSection
+          /* The artwork carries its own "Pick your mission" headline. */
+          heading="Compare the packages"
+          subheading="Every package side by side. Prices shown before tax and fees."
+          src="/events/packages/compare.webp"
+          alt="Comparison of the Recruit, Elite, Atomic and Core packages: arena time, player counts, starting price, extra player cost, private party room, weapon level, VIP perks, drinks, party favors, supplies, popcorn add-on and cleanup."
+        />
         <EventImageCarousel />
         <EventTypes />
         <EventsFAQ />

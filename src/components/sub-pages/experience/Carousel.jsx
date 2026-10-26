@@ -20,37 +20,43 @@ export const CAROUSEL_CONFIG = {
   title: "READY YOUR GEAR",
   subtitle:
     "Over 18 weapons to choose from. Build the load-out that takes the territory.",
+  /**
+   * Client-approved weapon cards (ADO-437). Each 1:1 card already carries the
+   * weapon name, level and stat block, so it serves as both the carousel slide
+   * and the enlarged view — the separate `/weapon-stats` screens it replaces
+   * are now redundant.
+   */
   slides: [
-    { src: "/weapon-carousel/1 Carousel Havoc SI.png", alt: "Havoc SI", modalSrc: "/weapon-stats/updated-stats/1 Update Weapons Screen Havoc SI.webp" },
-    { src: "/weapon-carousel/2 Carousel Havoc FA.png", alt: "Havoc FA", modalSrc: "/weapon-stats/updated-stats/2 Update Weapons Screen Havoc FA.webp" },
-    { src: "/weapon-carousel/3 Carousel Havoc SMG.png", alt: "Havoc SMG", modalSrc: "/weapon-stats/updated-stats/3 Update Weapons Screen Havoc SMG.webp" },
-    { src: "/weapon-carousel/4 Carousel Hornet.png", alt: "Hornet", modalSrc: "/weapon-stats/updated-stats/4 Update Weapons Screen Hornet 9mm.webp" },
-    { src: "/weapon-carousel/5 Carousel ACR.png", alt: "ACR", modalSrc: "/weapon-stats/updated-stats/5 Update Weapons Screen ACR.webp" },
-    { src: "/weapon-carousel/6 Carousel Bullpup SG.png", alt: "Bullpup SG", modalSrc: "/weapon-stats/updated-stats/6 Update Weapons Screen Bulpup SG.webp" },
-    { src: "/weapon-carousel/7 Carousel BMG-50.png", alt: "BMG-50", modalSrc: "/weapon-stats/updated-stats/7 Update Weapons Screen BMG-50.webp" },
-    { src: "/weapon-carousel/8 Carousel Havoc Sniper.png", alt: "Havoc Sniper", modalSrc: "/weapon-stats/updated-stats/8 Update Weapons Screen Havoc Sniper.webp" },
-    { src: "/weapon-carousel/9 Carousel Matrix SMG.png", alt: "Matrix SMG", modalSrc: "/weapon-stats/updated-stats/9 Update Weapons Screen Matrix SMG.webp" },
-    { src: "/weapon-carousel/10 Carousel Pink-90.png", alt: "Pink-90", modalSrc: "/weapon-stats/updated-stats/10 Update Weapons Screen Pink-90.webp" },
-    { src: "/weapon-carousel/11 Carousel FN SCAR.png", alt: "FN SCAR", modalSrc: "/weapon-stats/updated-stats/11 Update Weapons Screen FN SCAR.webp" },
-    // Temporarily hidden — M870 (listed as "Tactical SG") coming soon. Uncomment to restore.
-    // { src: "/weapon-carousel/12 Carousel Tactical SG.png", alt: "Tactical SG", modalSrc: "/weapon-stats/updated-stats/12 Update Weapons Screen Tactical SG.webp" },
-    { src: "/weapon-carousel/13 Carousel Warthog M4.png", alt: "Warthog M4", modalSrc: "/weapon-stats/updated-stats/13 Update Weapons Screen Warthog M4.webp" },
-    { src: "/weapon-carousel/14 Carousel TAR-21.png", alt: "TAR-21", modalSrc: "/weapon-stats/updated-stats/14 Update Weapons Screen TAR-21 Sniper.webp" },
-    { src: "/weapon-carousel/15 Carousel Incinerator.png", alt: "Incinerator", modalSrc: "/weapon-stats/updated-stats/15 Update Weapons Screen Incinerator Mark-1.webp" },
-    { src: "/weapon-carousel/16 Carousel Tommy Gun.png", alt: "Tommy Gun", modalSrc: "/weapon-stats/updated-stats/16 Update Weapons Screen Tommy Gun.webp" },
-    { src: "/weapon-carousel/17 Carousel Rocket Launcher.png", alt: "Rocket Launcher", modalSrc: "/weapon-stats/updated-stats/17 Update Weapons Screen Rocket Launcher.webp" },
-    { src: "/weapon-carousel/18 Carousel Zombie SAW.png", alt: "Zombie SAW", modalSrc: "/weapon-stats/updated-stats/18 Update Weapons Screen M249 Zombie Saw.webp" },
-    { src: "/weapon-carousel/19 Carousel YT-4 YEET.jpg", alt: "YT-4 Yeet", modalSrc: "/weapon-stats/updated-stats/19 Weapons Screen YT-4.webp" },
+    { src: "/weapon-cards/l1-havoc-semi-auto.webp", alt: "Havoc Semi Auto (Level 1)" },
+    { src: "/weapon-cards/l2-havoc-full-auto.webp", alt: "Havoc Full Auto (Level 2)" },
+    { src: "/weapon-cards/l2-havoc-smg.webp", alt: "Havoc SMG (Level 2)" },
+    { src: "/weapon-cards/l2-hornet-9mm.webp", alt: "Hornet 9mm (Level 2)" },
+    { src: "/weapon-cards/l3-acr.webp", alt: "ACR (Level 3)" },
+    { src: "/weapon-cards/l3-bullpup-auto-shotgun.webp", alt: "Bullpup Auto Shotgun (Level 3)" },
+    { src: "/weapon-cards/l3-bmg-50.webp", alt: "BMG-50 (Level 3)" },
+    { src: "/weapon-cards/l3-havoc-sniper.webp", alt: "Havoc Sniper (Level 3)" },
+    { src: "/weapon-cards/l3-matrix-smg.webp", alt: "Matrix SMG (Level 3)" },
+    { src: "/weapon-cards/l3-pink-90.webp", alt: "Pink-90 (Level 3)" },
+    { src: "/weapon-cards/l3-fn-scar-vet.webp", alt: "FN SCAR (Level 3)" },
+    { src: "/weapon-cards/l3-m870-tactical-shotgun.webp", alt: "M870 Tactical Shotgun (Level 3)" },
+    { src: "/weapon-cards/l3-warthog-m4.webp", alt: "Warthog M4 (Level 3)" },
+    { src: "/weapon-cards/l3-yt4-yeet.webp", alt: "YT-4 Yeet SMG (Level 3)" },
+    { src: "/weapon-cards/l4-tar-21-sniper.webp", alt: "TAR-21 Sniper (Level 4)" },
+    { src: "/weapon-cards/l4-incinerator.webp", alt: "Incinerator Mark-1 (Level 4)" },
+    { src: "/weapon-cards/l4-thompson-tommy-gun.webp", alt: "Thompson Tommy Gun (Level 4)" },
+    { src: "/weapon-cards/l4-quad-rocket-launcher.webp", alt: "Quad Rocket Launcher (Level 4)" },
+    { src: "/weapon-cards/l4-zombie-saw-m249.webp", alt: "M249 Zombie SAW (Level 4)" },
   ],
 
-  stageHeight: { xs: 240, md: 500 },
+  stageHeight: { xs: 300, md: 560 },
   containerMaxWidth: "lg",
   spacingY: { xs: 6, md: 20 },
 
+  /** Square to match the 1080x1080 cards — cropping would cut off the stats. */
   card: {
     radius: { xs: 10, md: 28 },
-    width: { xs: 320, md: 780 },
-    height: { xs: 200, md: 480 },
+    width: { xs: 260, md: 520 },
+    height: { xs: 260, md: 520 },
     outlineAlpha: 0.4,
     shadowCenterAlpha: 0.55,
     shadowSideAlpha: 0.35,
@@ -272,7 +278,7 @@ export default function GearCarousel(props) {
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.35, ease: "easeOut" }}
                         draggable={false}
-                        sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        sx={{ width: "100%", height: "100%", objectFit: "contain" }}
                       />
                     </Box>
                   </motion.div>

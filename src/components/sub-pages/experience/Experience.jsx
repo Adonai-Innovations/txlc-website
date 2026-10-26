@@ -6,6 +6,7 @@ import ExperienceContent from "./ExperienceContent";
 import Carousel from "./Carousel";
 import GameModes from "./GameModes";
 import { VideoSection } from "../../key-components/VideoEmbed";
+import PosterSection from "../../key-components/PosterSection";
 
 const experienceSchema = [
   {
@@ -66,12 +67,32 @@ export default function ExperiencePage() {
       <main>
         <ExperienceHero />
         <Carousel />
+        <PosterSection
+          heading="Weapons compared"
+          subheading="Every weapon in the arsenal, by level — fire type, damage, fire rate and ammo."
+          src="/experience/weapons-compare.webp"
+          alt="Weapons comparison matrix listing each Texas Laser Combat weapon by level with its fire type, damage, fire rate and ammo."
+          maxWidth="md"
+        />
         <VideoSection
           heading="See it in action"
           subheading="Two short walkthroughs of the arena and a live session."
           videos={EXPERIENCE_VIDEOS}
         />
         <GameModes />
+        {/*
+          ADO-437: the client wants the drone flythrough video and this field map
+          to replace the Panoee walkthrough below. The flythrough is still
+          pending delivery, so the walkthrough stays until it lands.
+        */}
+        <PosterSection
+          heading="Know the ground"
+          subheading="Barter Town, the Bot-Tec buildings, Atomic Gas, the Toxic Dump and both spawns."
+          src="/experience/arena-map.webp"
+          alt="Field map of the Texas Laser Combat arena showing Barter Town, three shelter buildings, two Bot-Tec buildings, the train, the missile, Atomic Gas, the house, the toxic dump, Pew-Pew Depot and the bunker and station spawns."
+          background="#f4f4f1"
+          maxWidth="lg"
+        />
         <Map fit="contain" backdrop="#111" />
         <ExperienceContent />
       </main>
