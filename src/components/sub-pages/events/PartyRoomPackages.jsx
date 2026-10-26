@@ -71,10 +71,14 @@ const CardWrap = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: { gridColumn: "auto" },
 }));
 
-/* Light grey image area */
-const ImgShell = styled(Paper)(({ theme }) => ({
+/**
+ * Square shell for the package artwork. The client-supplied cards (ADO-437) are
+ * 1:1 posters that already carry the title, pricing and inclusions, so they are
+ * letterboxed rather than cropped — cropping would cut the price off the card.
+ */
+const ImgShell = styled(Paper)(() => ({
   position: "relative",
-  height: 500,
+  aspectRatio: "1 / 1",
   borderRadius: 12,
   background: "#111",
   boxShadow: "none",
@@ -85,36 +89,22 @@ const ImgShell = styled(Paper)(({ theme }) => ({
   userSelect: "none",
   overflow: "hidden",
   border: `1px solid ${alpha("#000", 0.08)}`,
-  [theme.breakpoints.down("sm")]: {
-    height: "auto",
-    aspectRatio: "16 / 9",
-  },
 }));
 
-/* Bottom glass overlay */
+/**
+ * Caption + booking strip. It sits under the poster rather than on top of it so
+ * it never covers the artwork's own pricing panel.
+ */
 const Overlay = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  left: 16,
-  right: 16,
-  bottom: 16,
   borderRadius: 10,
   background: alpha("#000", 0.55),
   boxShadow: `0 12px 24px ${alpha("#000", 0.35)}`,
-  backdropFilter: "blur(2px)",
-  WebkitBackdropFilter: "blur(2px)",
   color: "#fff",
   padding: theme.spacing(1.5, 2),
+  marginTop: theme.spacing(2),
   display: "flex",
   alignItems: "center",
   gap: theme.spacing(2),
-  [theme.breakpoints.down("sm")]: {
-    position: "relative",
-    left: "auto",
-    right: "auto",
-    bottom: "auto",
-    marginTop: theme.spacing(2),
-    background: alpha("#000", 0.75),
-  },
 }));
 
 const CardContent = styled(Box)(({ theme }) => ({
@@ -146,7 +136,7 @@ const packagesDefault = [
     title: "Recruit Package",
     description:
       "75-minute public arena session for 4+ players with private room for party & more!",
-    image: "/events/recruit.jpg",
+    image: "/events/packages/recruit.webp",
     productId: PRODUCTS.recruit.id,
     campaign: PRODUCTS.recruit.campaign,
   },
@@ -155,7 +145,7 @@ const packagesDefault = [
     title: "Elite Package",
     description:
       "75-minute public arena session with upgraded weapons for 4+ players with private room for party & more!",
-    image: "/events/elite.jpg",
+    image: "/events/packages/elite.webp",
     productId: PRODUCTS.elite.id,
     campaign: PRODUCTS.elite.campaign,
   },
@@ -165,7 +155,7 @@ const packagesDefault = [
     id: "atomic",
     title: "Atomic Package",
     description: `75-minute private arena session, upgraded weapons, private party room. ${PACKAGE_SIZE_SUMMARY}`,
-    image: "/events/executive.jpg",
+    image: "/events/packages/atomic.webp",
     days: DAY_PRODUCTS.atomic,
   },
 ];
@@ -189,7 +179,9 @@ export default function PartyRoomPackages({
                     <Box
                       component="img"
                       src={pkg.image}
-                      alt={pkg.title}
+                      alt={`${pkg.title} — pricing and inclusions`}
+                      loading="lazy"
+                      decoding="async"
                       sx={{
                         width: "100%",
                         height: "100%",
